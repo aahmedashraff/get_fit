@@ -34,7 +34,7 @@ class GoalsScreen extends StatelessWidget {
     SizeConfig().init(context);
     return Scaffold(
       body: SizedBox(
-        height: SizeConfig.screenHeight,
+        height: MediaQuery.of(context).size.height,
         width: SizeConfig.screenWidth,
         child: Column(
           children: [
@@ -49,15 +49,17 @@ class GoalsScreen extends StatelessWidget {
               ),
             ),
             Container(
-              height: SizeConfig.safeBlockVertical * 19,
+              height: SizeConfig.safeBlockVertical * 18,
               child: SvgPicture.asset('assets/images/Component 4 – 1.svg'),
             ),
-            Text('What is your target goal?',
-                style: TextStyle(
-                    fontSize: SizeConfig.safeBlockVertical * 2,
-                    color: Colors.black54)),
+            Text(
+              'What is your target goal?',
+              style: TextStyle(
+                fontSize: SizeConfig.safeBlockVertical * 2,
+              ),
+            ),
             SizedBox(
-              height: SizeConfig.safeBlockVertical * 5,
+              height: SizeConfig.safeBlockVertical * 2,
             ),
             Spacer(flex: 6),
             RadioButtonContainer(
@@ -66,7 +68,7 @@ class GoalsScreen extends StatelessWidget {
               assetName: 'assets/images/muscle.svg',
             ),
             SizedBox(
-              height: 6,
+              height: SizeConfig.safeBlockVertical / 2,
             ),
             Spacer(flex: 6),
             RadioButtonContainer(
@@ -75,7 +77,7 @@ class GoalsScreen extends StatelessWidget {
               assetName: 'assets/images/swim.svg',
             ),
             SizedBox(
-              height: 6,
+              height: SizeConfig.safeBlockVertical / 2,
             ),
             Spacer(flex: 6),
             RadioButtonContainer(
@@ -84,7 +86,7 @@ class GoalsScreen extends StatelessWidget {
               assetName: 'assets/images/fat.svg',
             ),
             SizedBox(
-              height: 6,
+              height: SizeConfig.safeBlockVertical / 2,
             ),
             Spacer(flex: 6),
             RadioButtonContainer(
@@ -93,7 +95,7 @@ class GoalsScreen extends StatelessWidget {
               assetName: 'assets/images/dumble.svg',
             ),
             SizedBox(
-              height: 6,
+              height: SizeConfig.safeBlockVertical / 2,
             ),
             Spacer(flex: 6),
             RadioButtonContainer(
@@ -101,7 +103,7 @@ class GoalsScreen extends StatelessWidget {
               isFromLevelScreen: false,
               assetName: 'assets/images/run.svg',
             ),
-            Spacer(flex: 6),
+            Spacer(flex: 5),
             GestureDetector(
               onTap: () =>
                   Navigator.of(context).pushNamed(SignUpScreen.screenName),

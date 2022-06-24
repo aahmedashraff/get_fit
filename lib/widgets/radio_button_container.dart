@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 enum BoxSelect { muscle, skills, lose, strength, run }
+
 List goaliconss = [
   SvgPicture.asset('assets/images/muscle.svg'),
   SvgPicture.asset('assets/images/skills.svg'),
@@ -69,7 +70,7 @@ class RadioButtonContainer extends StatelessWidget {
                   Text(
                     title,
                     style: TextStyle(
-                        color: check(userData) ? Colors.black : Colors.grey,
+                        color: check(userData) ? Colors.white : Colors.grey,
                         fontSize: 18),
                     textAlign: TextAlign.left,
                   ),

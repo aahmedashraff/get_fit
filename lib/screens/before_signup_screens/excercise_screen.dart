@@ -82,6 +82,9 @@ class _ExercisePlaceScreenState extends State<ExercisePlaceScreen> {
                               );
                             },
                             child: ReusableCard(
+                              colour: SelectedBox == BoxSelect.home
+                                  ? primaryColor
+                                  : Colors.grey.shade500,
                               cardChild: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -112,7 +115,7 @@ class _ExercisePlaceScreenState extends State<ExercisePlaceScreen> {
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           color: SelectedBox == BoxSelect.gym
-                                              ? Colors.black
+                                              ? Colors.white
                                               : Colors.grey.shade500,
                                           fontSize: 17),
                                     ),
@@ -179,7 +182,7 @@ class _ExercisePlaceScreenState extends State<ExercisePlaceScreen> {
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           color: SelectedBox == BoxSelect.home
-                                              ? Colors.black
+                                              ? Colors.white
                                               : Colors.grey.shade500,
                                           fontSize: 17),
                                     ),

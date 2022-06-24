@@ -21,7 +21,7 @@ class _OldScreenState extends State<OldScreen> {
     SizeConfig().init(context);
     return Scaffold(
       body: SizedBox(
-        height: SizeConfig.screenHeight,
+        height: MediaQuery.of(context).size.height,
         width: SizeConfig.screenWidth,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -46,7 +46,6 @@ class _OldScreenState extends State<OldScreen> {
               "How old are you?",
               style: TextStyle(
                 fontSize: 17,
-                color: Colors.black54,
               ),
             ),
             NumberPicker(
@@ -65,7 +64,7 @@ class _OldScreenState extends State<OldScreen> {
               onChanged: (value) => setState(() => currentAgeValue = value),
             ),
             SizedBox(
-              height: SizeConfig.safeBlockVertical * 4,
+              height: SizeConfig.safeBlockVertical * 2,
             ),
             Expanded(
               child: Column(

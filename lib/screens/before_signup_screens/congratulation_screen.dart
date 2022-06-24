@@ -39,8 +39,8 @@ class CongratulationScreen extends StatelessWidget {
                   Text(
                     'Account created successfully',
                     style: TextStyle(
-                        fontSize: SizeConfig.safeBlockVertical * 2,
-                        color: Colors.black54),
+                      fontSize: SizeConfig.safeBlockVertical * 2,
+                    ),
                   ),
                   SizedBox(
                     height: 5,

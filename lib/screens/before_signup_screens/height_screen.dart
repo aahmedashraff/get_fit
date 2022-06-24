@@ -66,8 +66,8 @@ class _HeightScreenState extends State<HeightScreen> {
                   Text(
                     "what is your height?",
                     style: TextStyle(
-                        fontSize: SizeConfig.safeBlockVertical * 2,
-                        color: Colors.black54),
+                      fontSize: SizeConfig.safeBlockVertical * 2,
+                    ),
                   ),
                   Container(
                     height: 90.0,

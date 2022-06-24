@@ -22,6 +22,8 @@ class _WeightScreenState extends State<WeightScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
+
     return SafeArea(
       child: Container(
         height: SizeConfig.screenHeight,
@@ -54,7 +56,6 @@ class _WeightScreenState extends State<WeightScreen> {
                     "what is your weight?",
                     style: TextStyle(
                       fontSize: SizeConfig.safeBlockVertical * 2,
-                      color: Colors.black54,
                     ),
                   ),
                   SizedBox(

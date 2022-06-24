@@ -1,7 +1,6 @@
 import 'package:CaptainSayedApp/providers/user_data.dart';
 import 'package:CaptainSayedApp/sizeConfig.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class CreateGenderBoxxx extends StatelessWidget {
@@ -29,28 +28,27 @@ class CreateGenderBoxxx extends StatelessWidget {
           width: SizeConfig.screenWidth,
           child: Column(
             children: [
-              Expanded(
-                child: Stack(
-                  children: <Widget>[
-                    Image.asset(
+              Stack(
+                children: <Widget>[
+                  Center(
+                    child: Image.asset(
                       'assets/images/fetria.png',
-                      height: 180,
-                      fit: BoxFit.contain,
+                      height: SizeConfig.safeBlockVertical * 18,
+                      fit: BoxFit.fill,
                       color: (male && userData.userGender == "Male") ||
                               (!male && userData.userGender != "Male")
                           ? null
                           : Colors.grey,
                     ),
-                    Positioned(
-                      left: 17,
-                      right: 17,
-                      top: 10,
-                      child: SvgPicture.asset(
-                        'assets/images/female.svg',
-                      ),
+                  ),
+                  Center(
+                    child: Image.asset(
+                      'assets/images/young-woman.png',
+                      height: SizeConfig.safeBlockVertical * 10,
+                      fit: BoxFit.contain,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
 
               // ),

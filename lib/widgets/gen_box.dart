@@ -27,35 +27,28 @@ class CreateGenderBox extends StatelessWidget {
               : userData.selectGender();
         },
         child: SizedBox(
-          height: SizeConfig.screenHeight,
-          width: SizeConfig.screenWidth,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Expanded(
                 child: Stack(
-                  children: <Widget>[
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/images/maletria.png',
-                          height: 180,
-                          fit: BoxFit.fill,
-                          color: (male && userData.userGender == "Male") ||
-                                  (!male && userData.userGender != "Male")
-                              ? primaryColor
-                              : Colors.grey.shade500,
-                        ),
-                      ],
+                  children: [
+                    Center(
+                      child: Image.asset(
+                        'assets/images/maletria.png',
+                        height: SizeConfig.safeBlockVertical * 18,
+                        fit: BoxFit.fill,
+                        color: (male && userData.userGender == "Male") ||
+                                (!male && userData.userGender != "Male")
+                            ? primaryColor
+                            : Colors.grey.shade500,
+                      ),
                     ),
-                    Positioned(
-                      left: 68,
-                      right: 70,
-                      top: 82,
-                      bottom: 25,
+                    Center(
                       child: SvgPicture.asset(
                         'assets/images/male.svg',
+                        height: SizeConfig.safeBlockVertical * 10,
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ],

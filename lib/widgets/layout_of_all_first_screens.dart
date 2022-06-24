@@ -1,4 +1,3 @@
-import 'package:CaptainSayedApp/app_icon_icons.dart';
 import 'package:CaptainSayedApp/sizeConfig.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +28,7 @@ class LayoutOfAllFirstScreens extends StatelessWidget {
             Positioned(
               child: IconButton(
                 color: Theme.of(context).primaryColor,
-                icon: Icon(AppIcon.back),
+                icon: Icon(Icons.arrow_back_ios_sharp),
                 onPressed: () {
                   //those next tow lines is to avoid an error which is occured
                   // when pressing navigate.pop from this page and the

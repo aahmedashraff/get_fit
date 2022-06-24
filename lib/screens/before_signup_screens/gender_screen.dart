@@ -27,49 +27,47 @@ class _GenderScreenState extends State<GenderScreen> {
     return SizedBox(
       height: SizeConfig.screenHeight,
       width: SizeConfig.screenWidth,
-      child: SafeArea(
-        child: Scaffold(
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: SizeConfig.safeBlockVertical * 5,
+      child: Scaffold(
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: SizeConfig.safeBlockVertical * 5,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 2.0),
+              child: Text(
+                "gender",
+                style: TextStyle(fontSize: 20),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 2.0),
-                child: Text(
-                  "gender",
-                  style: TextStyle(fontSize: 20),
-                ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20),
+              child: SvgPicture.asset('assets/images/genderindi.svg'),
+            ),
+            SizedBox(
+              height: SizeConfig.safeBlockVertical,
+            ),
+            //choose_gender_txt
+            Text(
+              "Choose the gender",
+              style: TextStyle(
+                fontSize: SizeConfig.safeBlockVertical * 2,
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                child: SvgPicture.asset('assets/images/genderindi.svg'),
-              ),
-              SizedBox(
-                height: SizeConfig.safeBlockVertical,
-              ),
-              //choose_gender_txt
-              Text(
-                "Choose the gender",
-                style: TextStyle(
-                    fontSize: SizeConfig.safeBlockVertical * 2,
-                    color: Colors.black54),
-              ),
-              SizedBox(
-                height: SizeConfig.safeBlockVertical,
-              ),
+            ),
+            SizedBox(
+              height: SizeConfig.safeBlockVertical,
+            ),
 
-              CreateGenderBox(male: true),
-              CreateGenderBoxxx(male: false),
+            CreateGenderBox(male: true),
+            CreateGenderBoxxx(male: false),
 
-              GestureDetector(
-                onTap: () =>
-                    Navigator.of(context).pushNamed(OldScreen.screenName),
-                child: NextOrSubmitButton("Next"),
-              ),
-            ],
-          ),
+            GestureDetector(
+              onTap: () =>
+                  Navigator.of(context).pushNamed(OldScreen.screenName),
+              child: NextOrSubmitButton("Next"),
+            ),
+          ],
         ),
       ),
     );

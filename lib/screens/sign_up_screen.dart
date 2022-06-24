@@ -152,20 +152,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       padding: const EdgeInsets.only(bottom: 10.0),
                       child: Row(
                         children: [
-                          Material(
-                            child: Checkbox(
-                                focusColor: Colors.red,
-                                splashRadius: 15,
-                                fillColor: MaterialStateProperty.all<Color>(
-                                    primaryColor),
-                                checkColor: Colors.black,
-                                value: agree,
-                                onChanged: (bool value) {
-                                  setState(() {
-                                    agree = value;
-                                  });
-                                }),
-                          ),
+                          Checkbox(
+                              focusColor: Colors.transparent,
+                              splashRadius: 15,
+                              fillColor: MaterialStateProperty.all<Color>(
+                                  primaryColor),
+                              checkColor: Colors.black,
+                              value: agree,
+                              onChanged: (bool value) {
+                                setState(() {
+                                  agree = value;
+                                });
+                              }),
                           Text(
                             'I Agree To The Terms And Conditions Of The Application',
                             style: TextStyle(color: primaryColor, fontSize: 12),
