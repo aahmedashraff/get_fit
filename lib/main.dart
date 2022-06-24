@@ -367,12 +367,12 @@ class HomeScreen extends StatelessWidget {
           GestureDetector(
             onTap: () =>
                 Navigator.of(context).pushNamed(NewMessageScreen.screenName),
-            child: Image.asset('assets/images/msg.png'),
+            child: Image.asset('assets/images/Message.png'),
           ),
           GestureDetector(
             onTap: () =>
                 Navigator.of(context).pushNamed(NotificationScreen.screenName),
-            child: Image.asset('assets/images/Notification.png'),
+            child: Image.asset('assets/images/Notifcation.png'),
           ),
         ],
       ),

@@ -50,7 +50,7 @@ class _OldScreenState extends State<OldScreen> {
             ),
             NumberPicker(
               itemCount: 6,
-              itemHeight: SizeConfig.safeBlockVertical * 7,
+              itemHeight: SizeConfig.safeBlockVertical * 5,
               itemWidth: 400,
               haptics: true,
               minValue: 0,

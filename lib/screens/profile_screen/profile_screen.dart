@@ -165,7 +165,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Image.asset('assets/images/dumm.png'),
+                        Image.asset('assets/images/dum.png'),
                         SizedBox(width: SizeConfig.safeBlockHorizontal * 5),
                         Image.asset('assets/images/dum2.png'),
                         SizedBox(width: SizeConfig.safeBlockHorizontal * 5),

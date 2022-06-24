@@ -216,7 +216,7 @@ class _SettingScreenState extends State<SettingScreen> {
                             child: Text('Language'),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 25, left: 200),
+                            padding: const EdgeInsets.only(top: 25, left: 190),
                             child: Image.asset(
                               'assets/images/down-arrow.png',
                               color: Colors.grey.shade50,
@@ -239,13 +239,15 @@ class _SettingScreenState extends State<SettingScreen> {
                             child: Text('Dark Mode'),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 25, left: 150),
+                            padding: const EdgeInsets.only(top: 25, left: 140),
                             child: Consumer<ThemeManager>(
                               builder: (context, notifier, child) =>
                                   FlutterSwitch(
                                       toggleSize: 25,
-                                      height: 30,
-                                      width: 70,
+                                      height:
+                                          SizeConfig.safeBlockVertical * 3.4,
+                                      width:
+                                          SizeConfig.safeBlockHorizontal * 15.5,
                                       value: notifier.darkTheme,
                                       onToggle: (val) {
                                         notifier.toggleTheme();
@@ -269,7 +271,7 @@ class _SettingScreenState extends State<SettingScreen> {
                             child: Text('Rate The App'),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 25, left: 178),
+                            padding: const EdgeInsets.only(top: 25, left: 165),
                             child: Image.asset(
                               'assets/images/down-arrow.png',
                               color: Colors.grey.shade50,
@@ -292,7 +294,7 @@ class _SettingScreenState extends State<SettingScreen> {
                             child: Text('Support'),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 25, left: 213),
+                            padding: const EdgeInsets.only(top: 25, left: 199),
                             child: Image.asset(
                               'assets/images/down-arrow.png',
                               color: Colors.grey.shade50,
@@ -315,11 +317,11 @@ class _SettingScreenState extends State<SettingScreen> {
                             child: Text('Notification'),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 25, left: 145),
+                            padding: const EdgeInsets.only(top: 25, left: 130),
                             child: FlutterSwitch(
                               toggleSize: 25,
-                              height: 30,
-                              width: 70,
+                              height: SizeConfig.safeBlockVertical * 3.4,
+                              width: SizeConfig.safeBlockHorizontal * 15.5,
                               value: _notifyStatus,
                               onToggle: (val) {
                                 setState(() {

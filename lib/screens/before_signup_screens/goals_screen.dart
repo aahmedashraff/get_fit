@@ -39,7 +39,7 @@ class GoalsScreen extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: SizeConfig.safeBlockVertical * 5,
+              height: SizeConfig.safeBlockVertical * 3,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 2.0),
@@ -103,7 +103,10 @@ class GoalsScreen extends StatelessWidget {
               isFromLevelScreen: false,
               assetName: 'assets/images/run.svg',
             ),
-            Spacer(flex: 5),
+            Spacer(flex: 9),
+            SizedBox(
+              height: SizeConfig.safeBlockVertical / 3.1,
+            ),
             GestureDetector(
               onTap: () =>
                   Navigator.of(context).pushNamed(SignUpScreen.screenName),

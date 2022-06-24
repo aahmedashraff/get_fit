@@ -101,7 +101,7 @@ class _WeightScreenState extends State<WeightScreen> {
                                     RoundSliderOverlayShape(overlayRadius: 10),
                               ),
                               child: SizedBox(
-                                width: 295,
+                                width: SizeConfig.safeBlockHorizontal * 70,
                                 child: Slider(
                                   label: '$weight KG',
                                   value: weight.toDouble(),
