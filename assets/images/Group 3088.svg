@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="428" height="168" viewBox="0 0 428 168">
+  <defs>
+    <linearGradient id="linear-gradient" x1="1" x2="0.005" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ffbf2a"/>
+      <stop offset="1" stop-color="#fc5f5f"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_3088" data-name="Group 3088" transform="translate(0 -132)">
+    <rect id="Rectangle_101" data-name="Rectangle 101" width="428" height="168" transform="translate(0 132)" fill="url(#linear-gradient)"/>
+    <text id="getfit_Premium" data-name="getfit Premium" transform="translate(15 190)" fill="#fff" font-size="34" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">GETFIT PREMIUM</tspan></text>
+    <text id="Programs_for_all_people" data-name="Programs for all people" transform="translate(15 223)" fill="#fff" font-size="19" font-family="SegoeUI, Segoe UI" opacity="0.7"><tspan x="0" y="0">Programs For All People</tspan></text>
+  </g>
+</svg>

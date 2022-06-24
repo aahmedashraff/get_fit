@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="304" height="146" viewBox="0 0 304 146">
+  <g id="text" transform="translate(-46 -407)">
+    <text id="congratulation" transform="translate(114 435)" fill="#141414" font-size="26" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">Congratulation</tspan></text>
+    <text id="Account_created_successfully" data-name="Account created successfully" transform="translate(95 491)" fill="#141414" font-size="16" font-family="SegoeUI, Segoe UI" opacity="0.5"><tspan x="0" y="0">Account Created Successfully</tspan></text>
+    <text id="We_will_redirect_you_to_the_login_page_to_" data-name="We will redirect you to the login page to " transform="translate(46 520)" fill="#141414" font-size="16" font-family="SegoeUI, Segoe UI" opacity="0.5"><tspan x="0" y="0">We Will Redirect You To The Login Page To </tspan></text>
+    <text id="Confirm_The_Account" data-name="Confirm The Account" transform="translate(130 549)" fill="#141414" font-size="16" font-family="SegoeUI, Segoe UI" opacity="0.5"><tspan x="0" y="0">Confirm The Account</tspan></text>
+  </g>
+</svg>

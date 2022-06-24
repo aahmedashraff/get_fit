@@ -1,0 +1,18 @@
+password:
+  getfit
+
+appId:
+  com.captainsayedhussien32.CaptainSayedApp
+
+What is your first and last name?
+  [Unknown]:  mohamed
+What is the name of your organizational unit?
+  [Unknown]:  getfit
+What is the name of your organization?
+  [Unknown]:  getfit
+What is the name of your City or Locality?
+  [Unknown]:  cairo
+What is the name of your State or Province?
+  [Unknown]:  cairo
+What is the two-letter country code for this unit?
+  [Unknown]:  EG
