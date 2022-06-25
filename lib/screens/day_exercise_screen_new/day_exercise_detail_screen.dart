@@ -1,4 +1,3 @@
-import 'package:CaptainSayedApp/app_icon_icons.dart';
 import 'package:CaptainSayedApp/models/program_exercise_model.dart';
 import 'package:CaptainSayedApp/repos/progress_fun.dart';
 import 'package:CaptainSayedApp/screens/day_exercises_screen/screen_widgets/circular_timer.dart';
@@ -73,14 +72,12 @@ class _DayExerciseDetailScreenState extends State<DayExerciseDetailScreen> {
     exercise = widget.thisExercise == null
         ? widget.allExercises[widget.exerciseIndex]
         : widget.thisExercise;
-    _allVideos.add({
-      "download_link": exercise.main_video
-    });
+    _allVideos.add({"download_link": exercise.main_video});
     _allVideos.addAll(exercise.videos);
     _allImages.add(exercise.main_img);
     print(exercise.toJson());
     print("fffffffffffffffffffffffffff");
-    _allImages.addAll(exercise.images??[]);
+    _allImages.addAll(exercise.images ?? []);
     super.initState();
   }
 
@@ -105,7 +102,10 @@ class _DayExerciseDetailScreenState extends State<DayExerciseDetailScreen> {
               alignment: Alignment.centerLeft,
               child: IconButton(
                 onPressed: () => Navigator.of(context).pop(),
-                icon: Icon(AppIcon.back),
+                icon: Icon(
+                  Icons.arrow_back_ios_sharp,
+                  color: Theme.of(context).primaryColor,
+                ),
                 color: Colors.black,
               ),
             ),

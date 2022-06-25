@@ -65,7 +65,10 @@ class _DetailsForExerciseInDayScreenState
               child: IconButton(
                 onPressed: () => Navigator.of(context).popUntil(
                     ModalRoute.withName(DayExercisesScreen.screenName)),
-                icon: Icon(AppIcon.back),
+                icon: Icon(
+                  Icons.arrow_back_ios_sharp,
+                  color: Theme.of(context).primaryColor,
+                ),
                 color: Colors.black,
               ),
             ),
@@ -170,7 +173,7 @@ class _DetailsForExerciseInDayScreenState
                       ],
                     ),
                     Divider(color: Colors.black, thickness: 1),
-                 //  SizedBox(height: SizeConfig.safeBlockVertical),
+                    //  SizedBox(height: SizeConfig.safeBlockVertical),
                     Text("Other ways to exercise"),
                     Text("طرق أخرى للتمرين"),
                     OhterWaysToExercise(showOtherVideo: showOtherVideo),

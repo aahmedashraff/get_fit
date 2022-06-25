@@ -25,25 +25,24 @@ class ExerciseDetailsScreen extends StatefulWidget {
 }
 
 class _ExerciseDetailsScreenState extends State<ExerciseDetailsScreen> {
- // YoutubePlayerController _controller;
+  // YoutubePlayerController _controller;
 
   // @override
   // void dispose() {
   //   // TODO: implement dispose
   //   super.dispose();
   //   _controller.dispose();
-    
+
   // }
-   final _controller = PageController(initialPage: 0);
-  
+  final _controller = PageController(initialPage: 0);
 
   void showOtherVideo(int index) {
-      _controller.animateToPage(
-        index,
-        duration: Duration(milliseconds: 200),
-        curve: Curves.easeInOut,
-      );
-    }
+    _controller.animateToPage(
+      index,
+      duration: Duration(milliseconds: 200),
+      curve: Curves.easeInOut,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,162 +59,164 @@ class _ExerciseDetailsScreenState extends State<ExerciseDetailsScreen> {
     //next exercise
 
     var _videos = [exerciseInfo["video"], "SI5O6XgQsUo", "yhnIj_h_-4A"];
-    
+
     return Scaffold(
-      body: Container(
-        child: Column(
-          children: [
-             Align(
-              alignment: Alignment.centerLeft,
-              child: IconButton(
-                onPressed: () => Navigator.of(context).popUntil(
-                    ModalRoute.withName(DayExercisesScreen.screenName)),
-                icon: Icon(AppIcon.back),
-                color: Colors.black,
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                top: SizeConfig.safeBlockVertical * 1.75,
-                left: SizeConfig.safeBlockHorizontal * 4,
-                right: SizeConfig.safeBlockHorizontal * 4,
-                bottom: SizeConfig.safeBlockVertical * 1.5,
-              ),
-              child: Row(
-                children: [
-                  Text(
-                    exerciseInfo["name"],
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: SizeConfig.blockSizeHorizontal * 4,
-                    ),
+        body: Container(
+          child: Column(
+            children: [
+              Align(
+                alignment: Alignment.centerLeft,
+                child: IconButton(
+                  onPressed: () => Navigator.of(context).popUntil(
+                      ModalRoute.withName(DayExercisesScreen.screenName)),
+                  icon: Icon(
+                    Icons.arrow_back_ios_sharp,
+                    color: Theme.of(context).primaryColor,
                   ),
-                  Spacer(),
-                  RepetitionText(exerciseInfo["repetition"]),
-                ],
+                  color: Colors.black,
+                ),
               ),
-            ),
-            Expanded(
-              flex: 1,
-              child: PageView(
-                children: [
-                  for (var i = 0; i < _videos.length; i++)
-                    Container(
-                      child: VideoContainer(_videos[i]),
-                      margin: EdgeInsets.only(
-                          bottom: SizeConfig.safeBlockVertical * .5),
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(.5),
-                            blurRadius: 4,
-                            // spreadRadius: 4,
-                            offset:
-                                Offset(0, SizeConfig.safeBlockVertical * .25),
-                          ),
-                        ],
-                      ),
-                    )
-                ],
-                controller: _controller,
-                physics: NeverScrollableScrollPhysics(),
-              ),
-            ),
-            SizedBox(height: SizeConfig.safeBlockVertical),
-            Expanded(
-              flex: arguments["is-jsut-show-exercise"] == null ? 2 : 3,
-              child: SingleChildScrollView(
-                child: Column(
+              Padding(
+                padding: EdgeInsets.only(
+                  top: SizeConfig.safeBlockVertical * 1.75,
+                  left: SizeConfig.safeBlockHorizontal * 4,
+                  right: SizeConfig.safeBlockHorizontal * 4,
+                  bottom: SizeConfig.safeBlockVertical * 1.5,
+                ),
+                child: Row(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        FlatButton(
-                          child: Column(
-                            children: [
-                              Icon(
-                                Icons.star_border,
-                                color: Colors.black,
-                              ),
-                              Text("Favourite")
-                            ],
-                          ),
-
-                          //label: Text("Favourite"),
-                          onPressed: () {},
-                        ),
-                        FlatButton(
-                          child: Column(
-                            children: [
-                              Icon(
-                                Icons.list,
-                                color: Colors.black,
-                              ),
-                              Text("Save")
-                            ],
-                          ),
-
-                          //label: Text("Favourite"),
-                          onPressed: () {},
-                        ),
-                        FlatButton(
-                          child: Column(
-                            children: [
-                              Icon(
-                                AppIcon.cloud_computing,
-                                color: Colors.black,
-                              ),
-                              Text("Download")
-                            ],
-                          ),
-
-                          //label: Text("Favourite"),
-                          onPressed: () {},
-                        ),
-                      ],
+                    Text(
+                      exerciseInfo["name"],
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: SizeConfig.blockSizeHorizontal * 4,
+                      ),
                     ),
-                    Divider(color: Colors.black, thickness: 1),
-                 //  SizedBox(height: SizeConfig.safeBlockVertical),
-                    Text("Other ways to exercise"),
-                    Text("طرق أخرى للتمرين"),
-                    OhterWaysToExercise(showOtherVideo: showOtherVideo),
-                    SizedBox(height: SizeConfig.safeBlockVertical * 4),
-                    DetailsOfExercise(
-                      exerciseInfo["arabic-details"],
-                      exerciseInfo["english-details"],
-                    ),
-                    SizedBox(height: SizeConfig.safeBlockVertical * 3),
-                    TargetMuscles(),
-                    SizedBox(height: SizeConfig.safeBlockVertical * 3),
+                    Spacer(),
+                    RepetitionText(exerciseInfo["repetition"]),
                   ],
                 ),
               ),
-            ),
-            BottomContainer(
-              bottomContainerChildren: [
-                NextExerciseInfo(nextExerciseInfo),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: SizeConfig.safeBlockHorizontal * 8,
-                    vertical: SizeConfig.blockSizeVertical * 1.5,
-                  ),
-                  child: CompleteExerciseButton(
-                    () => _afterfinishExercise(
-                      categoryExercises: categoryExercises,
-                      exerciseIndex: exerciseIndex,
-                    ),
+              Expanded(
+                flex: 1,
+                child: PageView(
+                  children: [
+                    for (var i = 0; i < _videos.length; i++)
+                      Container(
+                        child: VideoContainer(_videos[i]),
+                        margin: EdgeInsets.only(
+                            bottom: SizeConfig.safeBlockVertical * .5),
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(.5),
+                              blurRadius: 4,
+                              // spreadRadius: 4,
+                              offset:
+                                  Offset(0, SizeConfig.safeBlockVertical * .25),
+                            ),
+                          ],
+                        ),
+                      )
+                  ],
+                  controller: _controller,
+                  physics: NeverScrollableScrollPhysics(),
+                ),
+              ),
+              SizedBox(height: SizeConfig.safeBlockVertical),
+              Expanded(
+                flex: arguments["is-jsut-show-exercise"] == null ? 2 : 3,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FlatButton(
+                            child: Column(
+                              children: [
+                                Icon(
+                                  Icons.star_border,
+                                  color: Colors.black,
+                                ),
+                                Text("Favourite")
+                              ],
+                            ),
+
+                            //label: Text("Favourite"),
+                            onPressed: () {},
+                          ),
+                          FlatButton(
+                            child: Column(
+                              children: [
+                                Icon(
+                                  Icons.list,
+                                  color: Colors.black,
+                                ),
+                                Text("Save")
+                              ],
+                            ),
+
+                            //label: Text("Favourite"),
+                            onPressed: () {},
+                          ),
+                          FlatButton(
+                            child: Column(
+                              children: [
+                                Icon(
+                                  AppIcon.cloud_computing,
+                                  color: Colors.black,
+                                ),
+                                Text("Download")
+                              ],
+                            ),
+
+                            //label: Text("Favourite"),
+                            onPressed: () {},
+                          ),
+                        ],
+                      ),
+                      Divider(color: Colors.black, thickness: 1),
+                      //  SizedBox(height: SizeConfig.safeBlockVertical),
+                      Text("Other ways to exercise"),
+                      Text("طرق أخرى للتمرين"),
+                      OhterWaysToExercise(showOtherVideo: showOtherVideo),
+                      SizedBox(height: SizeConfig.safeBlockVertical * 4),
+                      DetailsOfExercise(
+                        exerciseInfo["arabic-details"],
+                        exerciseInfo["english-details"],
+                      ),
+                      SizedBox(height: SizeConfig.safeBlockVertical * 3),
+                      TargetMuscles(),
+                      SizedBox(height: SizeConfig.safeBlockVertical * 3),
+                    ],
                   ),
                 ),
-              ],
-            ),
-          ],
+              ),
+              BottomContainer(
+                bottomContainerChildren: [
+                  NextExerciseInfo(nextExerciseInfo),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: SizeConfig.safeBlockHorizontal * 8,
+                      vertical: SizeConfig.blockSizeVertical * 1.5,
+                    ),
+                    child: CompleteExerciseButton(
+                      () => _afterfinishExercise(
+                        categoryExercises: categoryExercises,
+                        exerciseIndex: exerciseIndex,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          height: SizeConfig.screenHeight,
+          width: SizeConfig.safeBlockHorizontal * 100,
+          padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
         ),
-        height: SizeConfig.screenHeight,
-        width: SizeConfig.safeBlockHorizontal * 100,
-        padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-      ),
-      backgroundColor: Color(0xFFE9E9E9)
-    );
+        backgroundColor: Color(0xFFE9E9E9));
   }
 
   Future<void> _afterfinishExercise(
@@ -224,11 +225,11 @@ class _ExerciseDetailsScreenState extends State<ExerciseDetailsScreen> {
       // if it is last exercise in round
       final name =
           Provider.of<UserData>(context, listen: false).getCurrentExerciseName;
-      
-          final exerciseRound= await UserData.getExerciseRound(name);
-          print (exerciseRound);
-      exerciseRound!=null&&exerciseRound == 4
-      // if it also last round 
+
+      final exerciseRound = await UserData.getExerciseRound(name);
+      print(exerciseRound);
+      exerciseRound != null && exerciseRound == 4
+          // if it also last round
           ? Navigator.of(context).pushNamedAndRemoveUntil(
               FineshWorkoutScreen.screenName,
               ModalRoute.withName(ExerciseScreen.screenName),
@@ -240,13 +241,13 @@ class _ExerciseDetailsScreenState extends State<ExerciseDetailsScreen> {
                   detailsForFirstExerciseInNextRound: {
                     "category-exercises": categoryExercises,
                     "exercise-index": 0
-                  },nextRoundNum: exerciseRound==null?2:exerciseRound+1,
-
+                  },
+                  nextRoundNum: exerciseRound == null ? 2 : exerciseRound + 1,
                 ),
               ),
               ModalRoute.withName(ExerciseScreen.screenName),
             );
-            await Provider.of<UserData>(context, listen: false)
+      await Provider.of<UserData>(context, listen: false)
           .setExerciseRound(name);
     } else
       Navigator.of(context).pushNamed(TimerScreen.screenName, arguments: {

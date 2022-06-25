@@ -1,4 +1,3 @@
-import 'package:CaptainSayedApp/app_icon_icons.dart';
 import 'package:CaptainSayedApp/sizeConfig.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +13,8 @@ class ScreenHead extends StatelessWidget {
         children: [
           GestureDetector(
             child: Icon(
-              AppIcon.back,
+              Icons.arrow_back_ios_sharp,
+              color: Theme.of(context).primaryColor,
             ),
             onTap: () => Navigator.of(context).pop(),
           ),

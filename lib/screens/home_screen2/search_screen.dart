@@ -1,4 +1,3 @@
-import 'package:CaptainSayedApp/app_icon_icons.dart';
 import 'package:CaptainSayedApp/models/program_model.dart';
 import 'package:CaptainSayedApp/repos/repos_fun.dart';
 import 'package:CaptainSayedApp/screens/home_screen2/widgets/search_bar.dart';
@@ -20,7 +19,10 @@ class _SearchScreenState extends State<SearchScreen> {
         child: Column(
           children: [
             IconButton(
-              icon: Icon(AppIcon.back),
+              icon: Icon(
+                Icons.arrow_back_ios_sharp,
+                color: Theme.of(context).primaryColor,
+              ),
               onPressed: () {
                 Navigator.pop(context);
               },

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../app_icon_icons.dart';
 import '../../../sizeConfig.dart';
 
 class PrevScreen extends StatefulWidget {
@@ -19,7 +18,10 @@ class _PrevScreenState extends State<PrevScreen> {
             Row(
               children: [
                 IconButton(
-                  icon: Icon(AppIcon.back),
+                  icon: Icon(
+                    Icons.arrow_back_ios_sharp,
+                    color: Theme.of(context).primaryColor,
+                  ),
                   onPressed: () => Navigator.of(context).pop(),
                 ),
                 SizedBox(

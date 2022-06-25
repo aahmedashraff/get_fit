@@ -34,6 +34,7 @@ import 'package:CaptainSayedApp/screens/message_screen/message.dart';
 import 'package:CaptainSayedApp/screens/message_screen/screen_widgets/new_messege.dart';
 import 'package:CaptainSayedApp/screens/message_screen/screen_widgets/notification_screen.dart';
 import 'package:CaptainSayedApp/screens/premium_acc_screen/premium_acc_screen.dart';
+import 'package:CaptainSayedApp/screens/profile_screen/personal_edit.dart';
 import 'package:CaptainSayedApp/screens/profile_screen/profile_screen.dart';
 import 'package:CaptainSayedApp/screens/profile_screen/screen_widgets/home_img.dart';
 import 'package:CaptainSayedApp/screens/program_screen/program_Screen.dart';
@@ -258,6 +259,10 @@ class _MyAppState extends State<MyApp> {
                     create: (_) => Bloc(),
                     child: LayoutOfAllFirstScreens(SignUpScreen()),
                   ),
+              PersonalEdit.screenName: (_) => Provider(
+                    create: (_) => Bloc(),
+                    child: LayoutOfAllFirstScreens(PersonalEdit()),
+                  ),
               //HomeScreen.screenName: (_) => HomeScreen(),
               ExerciseScreen.screenName: (_) => ExerciseScreen(),
               TimerScreen.screenName: (_) => TimerScreen(),
@@ -405,11 +410,11 @@ class HomeScreen extends StatelessWidget {
               // ),
               //PremAccButton
               Positioned(
-                top: 105,
+                top: 90,
                 left: 15,
                 child: SizedBox(
-                  height: SizeConfig.safeBlockVertical * 6,
-                  width: SizeConfig.safeBlockVertical * 25,
+                  height: SizeConfig.safeBlockVertical * 8,
+                  width: SizeConfig.safeBlockVertical * 30,
                   child: AnimatedButton(
                     height: 48,
                     shadowDegree: ShadowDegree.dark,

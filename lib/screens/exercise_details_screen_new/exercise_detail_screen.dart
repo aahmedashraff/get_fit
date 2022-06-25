@@ -1,4 +1,3 @@
-import 'package:CaptainSayedApp/app_icon_icons.dart';
 import 'package:CaptainSayedApp/models/routine_exercise_model.dart';
 import 'package:CaptainSayedApp/models/routine_model.dart';
 import 'package:CaptainSayedApp/providers/user_data.dart';
@@ -66,7 +65,7 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
     });
     _allVideos.addAll(widget.allExercises[widget.exerciseIndex].videos);
     _allImages.add(widget.allExercises[widget.exerciseIndex].main_img);
-    _allImages.addAll(widget.allExercises[widget.exerciseIndex].images??[]);
+    _allImages.addAll(widget.allExercises[widget.exerciseIndex].images ?? []);
     super.initState();
   }
 
@@ -92,7 +91,10 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
               alignment: Alignment.centerLeft,
               child: IconButton(
                 onPressed: () => Navigator.of(context).pop(),
-                icon: Icon(AppIcon.back),
+                icon: Icon(
+                  Icons.arrow_back_ios_sharp,
+                  color: Theme.of(context).primaryColor,
+                ),
                 color: Colors.black,
               ),
             ),

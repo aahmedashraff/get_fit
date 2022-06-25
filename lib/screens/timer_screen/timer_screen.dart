@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:CaptainSayedApp/app_icon_icons.dart';
 import 'package:CaptainSayedApp/models/program_exercise_model.dart';
 import 'package:CaptainSayedApp/models/routine_model.dart';
 import 'package:CaptainSayedApp/screens/day_exercise_screen_new/day_exercise_detail_screen.dart';
@@ -114,7 +113,10 @@ class _TimerScreenState extends State<TimerScreen> {
             ),
             Positioned(
               child: IconButton(
-                icon: Icon(AppIcon.back),
+                icon: Icon(
+                  Icons.arrow_back_ios_sharp,
+                  color: Theme.of(context).primaryColor,
+                ),
                 onPressed: () => Navigator.of(context).pop(),
                 color: Colors.black,
               ),

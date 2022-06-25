@@ -1,4 +1,3 @@
-import 'package:CaptainSayedApp/app_icon_icons.dart';
 import 'package:CaptainSayedApp/sizeConfig.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +7,10 @@ class MyBackButton extends StatelessWidget {
     return Positioned(
       child: IconButton(
         color: Theme.of(context).primaryColor,
-        icon: Icon(AppIcon.back),
+        icon: Icon(
+          Icons.arrow_back_ios_sharp,
+          color: Theme.of(context).primaryColor,
+        ),
         onPressed: () => Navigator.of(context).pop(),
       ),
       left: SizeConfig.safeBlockHorizontal * 7,

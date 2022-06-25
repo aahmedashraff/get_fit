@@ -1,4 +1,3 @@
-import 'package:CaptainSayedApp/app_icon_icons.dart';
 import 'package:CaptainSayedApp/providers/user_data.dart';
 import 'package:CaptainSayedApp/screens/exercise_details_screen/screen_widgets/bottom_containder.dart';
 import 'package:CaptainSayedApp/screens/exercise_details_screen/screen_widgets/complete_exercise_button.dart';
@@ -22,14 +21,14 @@ class ExerciseDetailsScreen extends StatefulWidget {
 }
 
 class _ExerciseDetailsScreenState extends State<ExerciseDetailsScreen> {
- // YoutubePlayerController _controller;
+  // YoutubePlayerController _controller;
 
   // @override
   // void dispose() {
   //   // TODO: implement dispose
   //   super.dispose();
   //   _controller.dispose();
-    
+
   // }
 
   @override
@@ -54,63 +53,65 @@ class _ExerciseDetailsScreenState extends State<ExerciseDetailsScreen> {
     //   ),
     // );
     return Scaffold(
-      body: Container(
-        child: Column(
-          children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: IconButton(
-                onPressed: () => Navigator.of(context)
-                    .popUntil(ModalRoute.withName(ExerciseScreen.screenName)),
-                icon: Icon(AppIcon.back),
+        body: Container(
+          child: Column(
+            children: [
+              Align(
+                alignment: Alignment.centerLeft,
+                child: IconButton(
+                  onPressed: () => Navigator.of(context)
+                      .popUntil(ModalRoute.withName(ExerciseScreen.screenName)),
+                  icon: Icon(
+                    Icons.arrow_back_ios_sharp,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  color: Theme.of(context).primaryColor,
+                ),
+              ),
+              VideoContainer(exerciseInfo["video"]),
+              Spacer(flex: 1),
+              Text(
+                exerciseInfo["name"],
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: SizeConfig.blockSizeHorizontal * 4.5,
+                ),
+              ),
+              Spacer(flex: 1),
+              RepetitionText(exerciseInfo["repetition"]),
+              Divider(
                 color: Theme.of(context).primaryColor,
               ),
-            ),
-            VideoContainer(exerciseInfo["video"]),
-            Spacer(flex: 1),
-            Text(
-              exerciseInfo["name"],
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: SizeConfig.blockSizeHorizontal * 4.5,
+              Spacer(flex: 4),
+              DetailsOfExercise(
+                exerciseInfo["arabic-details"],
+                exerciseInfo["english-details"],
               ),
-            ),
-            Spacer(flex: 1),
-            RepetitionText(exerciseInfo["repetition"]),
-            Divider(
-              color: Theme.of(context).primaryColor,
-            ),
-            Spacer(flex: 4),
-            DetailsOfExercise(
-              exerciseInfo["arabic-details"],
-              exerciseInfo["english-details"],
-            ),
-            Spacer(flex: 6),
-            BottomContainer(
-              bottomContainerChildren: [
-                NextExerciseInfo(nextExerciseInfo),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: SizeConfig.safeBlockHorizontal * 8,
-                    vertical: SizeConfig.blockSizeVertical * 1.5,
-                  ),
-                  child: CompleteExerciseButton(
-                    () => _afterfinishExercise(
-                      categoryExercises: categoryExercises,
-                      exerciseIndex: exerciseIndex,
+              Spacer(flex: 6),
+              BottomContainer(
+                bottomContainerChildren: [
+                  NextExerciseInfo(nextExerciseInfo),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: SizeConfig.safeBlockHorizontal * 8,
+                      vertical: SizeConfig.blockSizeVertical * 1.5,
+                    ),
+                    child: CompleteExerciseButton(
+                      () => _afterfinishExercise(
+                        categoryExercises: categoryExercises,
+                        exerciseIndex: exerciseIndex,
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
+          height: SizeConfig.screenHeight,
+          width: SizeConfig.safeBlockHorizontal * 100,
+          padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
         ),
-        height: SizeConfig.screenHeight,
-        width: SizeConfig.safeBlockHorizontal * 100,
-        padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-      ),
-      backgroundColor: Color(0xFFE9E9E9)
-    );
+        backgroundColor: Color(0xFFE9E9E9));
   }
 
   Future<void> _afterfinishExercise(
@@ -119,11 +120,11 @@ class _ExerciseDetailsScreenState extends State<ExerciseDetailsScreen> {
       // if it is last exercise in round
       final name =
           Provider.of<UserData>(context, listen: false).getCurrentExerciseName;
-      
-          final exerciseRound= await UserData.getExerciseRound(name);
-          print (exerciseRound);
-      exerciseRound!=null&&exerciseRound == 4
-      // if it also last round 
+
+      final exerciseRound = await UserData.getExerciseRound(name);
+      print(exerciseRound);
+      exerciseRound != null && exerciseRound == 4
+          // if it also last round
           ? Navigator.of(context).pushNamedAndRemoveUntil(
               FineshWorkoutScreen.screenName,
               ModalRoute.withName(ExerciseScreen.screenName),
@@ -135,13 +136,13 @@ class _ExerciseDetailsScreenState extends State<ExerciseDetailsScreen> {
                   detailsForFirstExerciseInNextRound: {
                     "category-exercises": categoryExercises,
                     "exercise-index": 0
-                  },nextRoundNum: exerciseRound==null?2:exerciseRound+1,
-
+                  },
+                  nextRoundNum: exerciseRound == null ? 2 : exerciseRound + 1,
                 ),
               ),
               ModalRoute.withName(ExerciseScreen.screenName),
             );
-            await Provider.of<UserData>(context, listen: false)
+      await Provider.of<UserData>(context, listen: false)
           .setExerciseRound(name);
     } else
       Navigator.of(context).pushNamed(TimerScreen.screenName, arguments: {

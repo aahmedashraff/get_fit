@@ -1,4 +1,5 @@
 import 'package:CaptainSayedApp/screens/aftersplash.dart';
+import 'package:CaptainSayedApp/screens/profile_screen/personal_edit.dart';
 import 'package:CaptainSayedApp/screens/settings_screen/widget_of_screen/social_account_item.dart';
 import 'package:CaptainSayedApp/screens/settings_screen/widget_of_screen/top_of_screen.dart';
 import 'package:CaptainSayedApp/sizeConfig.dart';
@@ -70,9 +71,19 @@ class _SettingScreenState extends State<SettingScreen> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 25, left: 170),
-                            child: Image.asset(
-                              'assets/images/down-arrow.png',
-                              color: Colors.grey.shade50,
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => PersonalEdit(),
+                                  ),
+                                );
+                              },
+                              child: Image.asset(
+                                'assets/images/down-arrow.png',
+                                color: Colors.grey.shade50,
+                              ),
                             ),
                           ),
                         ],

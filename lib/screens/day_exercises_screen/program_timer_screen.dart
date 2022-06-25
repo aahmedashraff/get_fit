@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:CaptainSayedApp/app_icon_icons.dart';
 import 'package:CaptainSayedApp/providers/app_data.dart';
 import 'package:CaptainSayedApp/providers/program_progress.dart';
 import 'package:CaptainSayedApp/providers/user_data.dart';
@@ -157,7 +156,10 @@ class _ProgramTimerScreenState extends State<ProgramTimerScreen> {
           ),
           Positioned(
             child: IconButton(
-              icon: Icon(AppIcon.back),
+              icon: Icon(
+                Icons.arrow_back_ios_sharp,
+                color: Theme.of(context).primaryColor,
+              ),
               onPressed: () => Navigator.of(context).pop(),
               color: Colors.black,
             ),

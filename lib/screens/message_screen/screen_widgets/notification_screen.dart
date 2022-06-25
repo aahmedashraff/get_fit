@@ -1,8 +1,6 @@
 import 'package:CaptainSayedApp/sizeConfig.dart';
 import 'package:flutter/material.dart';
 
-import '../../../app_icon_icons.dart';
-
 class NotificationScreen extends StatelessWidget {
   static const screenName = "/notification-screen";
 
@@ -22,7 +20,8 @@ class NotificationScreen extends StatelessWidget {
                     SizedBox(width: SizeConfig.safeBlockHorizontal * 5),
                     GestureDetector(
                       child: Icon(
-                        AppIcon.back,
+                        Icons.arrow_back_ios_sharp,
+                        color: Theme.of(context).primaryColor,
                       ),
                       onTap: () => Navigator.of(context).pop(),
                     ),

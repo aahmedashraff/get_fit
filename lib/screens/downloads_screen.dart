@@ -16,7 +16,7 @@ class DownloadsScreen extends StatelessWidget {
           Row(
             children: [
               IconButton(
-                icon: Icon(AppIcon.back, color: Colors.black),
+                icon:  Icon(Icons.arrow_back_ios_sharp, color: Theme.of(context).primaryColor,),
                 onPressed: () => Navigator.of(context).pop(),
               ),
               Padding(
