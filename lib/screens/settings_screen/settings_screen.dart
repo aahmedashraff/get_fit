@@ -1,4 +1,5 @@
 import 'package:CaptainSayedApp/screens/aftersplash.dart';
+import 'package:CaptainSayedApp/screens/profile_screen/account_data_edit.dart';
 import 'package:CaptainSayedApp/screens/profile_screen/personal_edit.dart';
 import 'package:CaptainSayedApp/screens/settings_screen/widget_of_screen/social_account_item.dart';
 import 'package:CaptainSayedApp/screens/settings_screen/widget_of_screen/top_of_screen.dart';
@@ -84,7 +85,8 @@ class _SettingScreenState extends State<SettingScreen> {
                               },
                               child: Image.asset(
                                 'assets/images/down-arrow.png',
-                                color: Colors.grey.shade50,
+                                color:
+                                    isDark ? Colors.grey.shade50 : Colors.black,
                               ),
                             ),
                           ),
@@ -106,9 +108,14 @@ class _SettingScreenState extends State<SettingScreen> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 25, left: 170),
-                            child: Image.asset(
-                              'assets/images/down-arrow.png',
-                              color: Colors.grey.shade50,
+                            child: GestureDetector(
+                              onTap: () => Navigator.of(context)
+                                  .pushNamed(AccountDataEdit.screenName),
+                              child: Image.asset(
+                                'assets/images/down-arrow.png',
+                                color:
+                                    isDark ? Colors.grey.shade50 : Colors.black,
+                              ),
                             ),
                           ),
                         ],
@@ -158,7 +165,8 @@ class _SettingScreenState extends State<SettingScreen> {
                             padding: const EdgeInsets.only(top: 25, left: 112),
                             child: Image.asset(
                               'assets/images/down-arrow.png',
-                              color: Colors.grey.shade50,
+                              color:
+                                  isDark ? Colors.grey.shade50 : Colors.black,
                             ),
                           ),
                         ],
@@ -181,7 +189,8 @@ class _SettingScreenState extends State<SettingScreen> {
                             padding: const EdgeInsets.only(top: 25, left: 115),
                             child: Image.asset(
                               'assets/images/down-arrow.png',
-                              color: Colors.grey.shade50,
+                              color:
+                                  isDark ? Colors.grey.shade50 : Colors.black,
                             ),
                           ),
                         ],
@@ -232,7 +241,8 @@ class _SettingScreenState extends State<SettingScreen> {
                             padding: const EdgeInsets.only(top: 25, left: 190),
                             child: Image.asset(
                               'assets/images/down-arrow.png',
-                              color: Colors.grey.shade50,
+                              color:
+                                  isDark ? Colors.grey.shade50 : Colors.black,
                             ),
                           ),
                         ],
@@ -287,7 +297,8 @@ class _SettingScreenState extends State<SettingScreen> {
                             padding: const EdgeInsets.only(top: 25, left: 165),
                             child: Image.asset(
                               'assets/images/down-arrow.png',
-                              color: Colors.grey.shade50,
+                              color:
+                                  isDark ? Colors.grey.shade50 : Colors.black,
                             ),
                           ),
                         ],
@@ -310,7 +321,8 @@ class _SettingScreenState extends State<SettingScreen> {
                             padding: const EdgeInsets.only(top: 25, left: 199),
                             child: Image.asset(
                               'assets/images/down-arrow.png',
-                              color: Colors.grey.shade50,
+                              color:
+                                  isDark ? Colors.grey.shade50 : Colors.black,
                             ),
                           ),
                         ],

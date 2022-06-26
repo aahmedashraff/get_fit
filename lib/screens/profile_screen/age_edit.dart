@@ -58,11 +58,11 @@ class _AgeEditScreenState extends State<AgeEditScreen> {
               ),
             ),
             SizedBox(
-              height: SizeConfig.safeBlockVertical * 5,
+              height: SizeConfig.safeBlockVertical * 8,
             ),
             NumberPicker(
               itemCount: 6,
-              itemHeight: SizeConfig.safeBlockVertical * 5,
+              itemHeight: SizeConfig.safeBlockVertical * 6,
               itemWidth: 400,
               haptics: true,
               minValue: 0,

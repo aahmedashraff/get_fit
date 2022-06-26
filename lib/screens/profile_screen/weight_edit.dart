@@ -9,151 +9,122 @@ import '../../theme/theme_constant.dart';
 import '../../widgets/next_or_submit_button.dart';
 import '../../widgets/round_icon_button.dart';
 
-class WeightScreen extends StatefulWidget {
+class WeightEditScreen extends StatefulWidget {
   static const screenName = "/weight-screen";
-
-  const WeightScreen({Key key}) : super(key: key);
-
+  const WeightEditScreen({Key key}) : super(key: key);
   @override
-  State<WeightScreen> createState() => _WeightScreenState();
+  State<WeightEditScreen> createState() => _WeightEditScreenState();
 }
 
-class _WeightScreenState extends State<WeightScreen> {
+class _WeightEditScreenState extends State<WeightEditScreen> {
   int weight = 60;
-
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-
-    return SafeArea(
-      child: Container(
-        height: SizeConfig.screenHeight,
-        width: SizeConfig.screenWidth,
-        child: Scaffold(
-          body: Stack(
-            children: [
-              Column(
-                children: <Widget>[
-                  SizedBox(
-                    height: SizeConfig.safeBlockVertical * 5,
-                  ),
-                  Text(
-                    "Weight",
-                    style: TextStyle(
-                      fontSize: 22,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 20,
-                      right: 20,
-                    ),
-                    child: SvgPicture.asset('assets/images/weightindi.svg'),
-                  ),
-                  SizedBox(
-                    height: SizeConfig.safeBlockVertical * 3,
-                  ),
-                  Text(
-                    "what is your weight?",
-                    style: TextStyle(
-                      fontSize: SizeConfig.safeBlockVertical * 2,
-                    ),
-                  ),
-                  SizedBox(
-                    height: SizeConfig.safeBlockVertical * 2,
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return Container(
+      child: Scaffold(
+        body: Wrap(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0),
+              child: Row(
                 children: [
                   Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 190),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            RoundIconButton(
-                              icon: FontAwesomeIcons.minus,
-                              onPressed: () {
-                                setState(
-                                  () {
-                                    weight--;
-                                  },
-                                );
-                              },
-                            ),
-                            SliderTheme(
-                              data: SliderTheme.of(context).copyWith(
-                                valueIndicatorColor: primaryColor,
-                                valueIndicatorTextStyle:
-                                    TextStyle(fontSize: 20),
-                                valueIndicatorShape:
-                                    PaddleSliderValueIndicatorShape(),
-                                showValueIndicator: ShowValueIndicator.always,
-                                thumbColor: primaryColor,
-                                activeTrackColor: primaryColor,
-                                trackHeight: 5,
-                                thumbShape: RoundSliderThumbShape(
-                                    enabledThumbRadius: 10.0),
-                                overlayShape:
-                                    RoundSliderOverlayShape(overlayRadius: 10),
-                              ),
-                              child: SizedBox(
-                                width: SizeConfig.safeBlockHorizontal * 70,
-                                child: Slider(
-                                  label: '$weight KG',
-                                  value: weight.toDouble(),
-                                  min: 40,
-                                  max: 250,
-                                  onChanged: (double newValue) {
-                                    setState(
-                                      () {
-                                        weight = newValue.round();
-                                      },
-                                    );
-                                  },
-                                ),
-                              ),
-                            ),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                RoundIconButton(
-                                  icon: FontAwesomeIcons.plus,
-                                  onPressed: () {
-                                    setState(
-                                      () {
-                                        weight++;
-                                      },
-                                    );
-                                  },
-                                ),
-                              ],
-                            ),
-                          ],
+                      SizedBox(
+                        height: SizeConfig.safeBlockVertical * 4,
+                      ),
+                      Text(
+                        "Your Weight",
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: SizeConfig.safeBlockVertical * 1.5),
+                      Text(
+                        "Weight gain or decrease? :)",
+                        style: TextStyle(
+                          color: Colors.grey.shade500,
+                          fontSize: 16,
                         ),
                       ),
                     ],
                   ),
                 ],
               ),
-              SizedBox(
-                height: SizeConfig.safeBlockVertical * 6,
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  GestureDetector(
-                    onTap: () => Navigator.of(context).pop(),
-                    child: EditSaveButton("Next"),
+            ),
+            SizedBox(height: SizeConfig.safeBlockVertical * 35),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                RoundIconButton(
+                    icon: FontAwesomeIcons.minus,
+                    onPressed: () {
+                      setState(() {
+                        weight--;
+                      });
+                    }),
+                SliderTheme(
+                  data: SliderTheme.of(context).copyWith(
+                    valueIndicatorColor: primaryColor,
+                    valueIndicatorTextStyle: TextStyle(fontSize: 20),
+                    valueIndicatorShape: PaddleSliderValueIndicatorShape(),
+                    showValueIndicator: ShowValueIndicator.always,
+                    thumbColor: primaryColor,
+                    activeTrackColor: primaryColor,
+                    trackHeight: 1,
+                    thumbShape: RoundSliderThumbShape(enabledThumbRadius: 10.0),
+                    overlayShape: RoundSliderOverlayShape(overlayRadius: 10),
                   ),
-                ],
-              ),
-            ],
-          ),
+                  child: SizedBox(
+                    width: SizeConfig.safeBlockHorizontal * 70,
+                    child: Slider(
+                      label: '$weight KG',
+                      value: weight.toDouble(),
+                      min: 40,
+                      max: 250,
+                      onChanged: (double newValue) {
+                        setState(
+                          () {
+                            weight = newValue.round();
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    RoundIconButton(
+                      icon: FontAwesomeIcons.plus,
+                      onPressed: () {
+                        setState(
+                          () {
+                            weight++;
+                          },
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            SizedBox(height: SizeConfig.safeBlockVertical * 33),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Center(
+                  child: GestureDetector(
+                    onTap: () => Navigator.of(context).pop(),
+                    child: EditSaveButton("Save"),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

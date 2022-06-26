@@ -34,6 +34,7 @@ import 'package:CaptainSayedApp/screens/message_screen/message.dart';
 import 'package:CaptainSayedApp/screens/message_screen/screen_widgets/new_messege.dart';
 import 'package:CaptainSayedApp/screens/message_screen/screen_widgets/notification_screen.dart';
 import 'package:CaptainSayedApp/screens/premium_acc_screen/premium_acc_screen.dart';
+import 'package:CaptainSayedApp/screens/profile_screen/account_data_edit.dart';
 import 'package:CaptainSayedApp/screens/profile_screen/personal_edit.dart';
 import 'package:CaptainSayedApp/screens/profile_screen/profile_screen.dart';
 import 'package:CaptainSayedApp/screens/profile_screen/screen_widgets/home_img.dart';
@@ -231,6 +232,8 @@ class _MyAppState extends State<MyApp> {
             routes: {
               GenderScreen.screenName: (_) =>
                   LayoutOfAllFirstScreens(GenderScreen()),
+              AccountDataEdit.screenName: (_) =>
+                  LayoutOfAllFirstScreens(AccountDataEdit()),
               LevelScreen.screenName: (_) =>
                   LayoutOfAllFirstScreens(LevelScreen()),
               OldScreen.screenName: (_) => LayoutOfAllFirstScreens(OldScreen()),
