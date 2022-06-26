@@ -11,7 +11,7 @@ class CongratulationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold( 
       body: Container(
         height: SizeConfig.screenHeight,
         width: SizeConfig.screenWidth,

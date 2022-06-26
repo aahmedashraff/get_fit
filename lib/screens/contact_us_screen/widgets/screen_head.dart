@@ -15,18 +15,19 @@ class ScreenHead extends StatelessWidget {
         children: [
           GestureDetector(
             child: Icon(
-              AppIcon.back,
-              color: Colors.black,
+              Icons.arrow_back_ios_sharp,
+              color: Theme.of(context).primaryColor,
             ),
             onTap: () => Navigator.of(context).pop(),
           ),
           //Spacer(),
-          Text(
-            "Contact Us",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-              fontSize: SizeConfig.safeBlockHorizontal * 4.5,
+          Padding(
+            padding: const EdgeInsets.only(right: 150),
+            child: Text(
+              "Profile",
+              style: TextStyle(
+                fontSize: 20,
+              ),
             ),
           ),
         ],

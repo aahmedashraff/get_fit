@@ -1,5 +1,6 @@
 import 'package:CaptainSayedApp/sizeConfig.dart';
 import 'package:flutter/material.dart';
+import 'package:colorful_safe_area/colorful_safe_area.dart';
 
 class LayoutOfAllFirstScreens extends StatelessWidget {
   static const screenName = "/layout-of-all-first-screens";
@@ -11,7 +12,8 @@ class LayoutOfAllFirstScreens extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
 
-    return SafeArea(
+    return ColorfulSafeArea(
+      color: Color.fromRGBO(24, 24, 24, 1),
       child: Scaffold(
         body: Stack(
           children: [
