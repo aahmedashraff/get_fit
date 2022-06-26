@@ -60,12 +60,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: SizeConfig.safeBlockVertical,
                 ),
                 //choose_gender_txt
-                Text(
-                  "Create An Account",
-                  style: TextStyle(
-                      fontSize: SizeConfig.safeBlockVertical * 2,
-                      color: Colors.black54),
-                ),
                 SizedBox(height: SizeConfig.safeBlockVertical * 2),
                 Padding(
                   padding: const EdgeInsets.only(left: 12),

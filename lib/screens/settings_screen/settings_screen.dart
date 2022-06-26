@@ -21,6 +21,8 @@ class _SettingScreenState extends State<SettingScreen> {
   bool _notifyStatus = false;
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
+
     bool isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(

@@ -1,4 +1,3 @@
-import 'package:CaptainSayedApp/screens/profile_screen/screen_widgets/screen_head.dart';
 import 'package:CaptainSayedApp/screens/profile_screen/screen_widgets/user_photo.dart';
 import 'package:CaptainSayedApp/screens/profile_screen/workout/prev_screen.dart';
 import 'package:CaptainSayedApp/screens/settings_screen/settings_screen.dart';
@@ -26,90 +25,82 @@ class ProfileScreen extends StatelessWidget {
         width: SizeConfig.screenWidth,
         child: Column(
           children: [
-            ScreenHead(),
-            SizedBox(height: SizeConfig.safeBlockVertical * 4),
+            SizedBox(height: SizeConfig.safeBlockVertical * 6),
             Stack(
               children: [
-                Material(
-                  // elevation: 1,
-                  borderRadius: BorderRadius.circular(10),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color:
-                          isDark ? Colors.grey.shade900 : Colors.grey.shade50,
-                      border: Border.all(
-                        color:
-                            isDark ? Colors.transparent : Colors.grey.shade50,
-                      ),
-                      borderRadius: BorderRadius.circular(10),
+                Container(
+                  decoration: BoxDecoration(
+                    color: isDark ? Colors.grey.shade900 : Colors.grey.shade50,
+                    border: Border.all(
+                      color: isDark ? Colors.transparent : Colors.grey.shade50,
                     ),
-                    width: 397,
-                    height: 136,
-                    child: Column(
-                      children: [
-                        SizedBox(height: 10),
-                        Column(
-                          children: [
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                SizedBox(width: 10),
-                                UserPhot(true),
-                                SizedBox(width: 10),
-                                Column(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(right: 55),
-                                      child: Row(
-                                        children: [
-                                          Consumer<UserData>(
-                                            builder: (_, data, ch) => Text(
-                                              'Ahmed Ashraf',
-                                              style: TextStyle(
-                                                  fontSize: 20,
-                                                  overflow: TextOverflow.fade,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  width: 397,
+                  height: 136,
+                  child: Column(
+                    children: [
+                      SizedBox(height: 10),
+                      Column(
+                        children: [
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SizedBox(width: 10),
+                              UserPhot(true),
+                              SizedBox(width: 10),
+                              Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 55),
+                                    child: Row(
+                                      children: [
+                                        Consumer<UserData>(
+                                          builder: (_, data, ch) => Text(
+                                            'Ahmed Ashraf',
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                overflow: TextOverflow.fade,
+                                                fontWeight: FontWeight.bold),
                                           ),
-                                          SizedBox(width: 15),
-                                          Image.asset(
-                                              'assets/images/check (3).png'),
-                                        ],
-                                      ),
+                                        ),
+                                        SizedBox(width: 15),
+                                        Image.asset(
+                                            'assets/images/check (3).png'),
+                                      ],
                                     ),
-                                    Consumer<UserData>(
-                                      builder: (_, data, ch) => Text(
-                                        data.userEmail,
-                                        style: TextStyle(
-                                            color: Colors.blue, fontSize: 16),
-                                      ),
+                                  ),
+                                  Consumer<UserData>(
+                                    builder: (_, data, ch) => Text(
+                                      data.userEmail,
+                                      style: TextStyle(
+                                          color: Colors.blue, fontSize: 16),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          right: 160, top: 3),
-                                      child: Consumer<UserData>(
-                                        builder: (_, data, ch) => Container(
-                                          width: 70,
-                                          decoration: BoxDecoration(
-                                              color:
-                                                  primaryColor.withOpacity(.3)),
-                                          child: Text(
-                                            data.getUserLevel,
-                                            textAlign: TextAlign.center,
-                                            style:
-                                                TextStyle(color: primaryColor),
-                                          ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        right: 160, top: 3),
+                                    child: Consumer<UserData>(
+                                      builder: (_, data, ch) => Container(
+                                        width: 70,
+                                        decoration: BoxDecoration(
+                                            color:
+                                                primaryColor.withOpacity(.3)),
+                                        child: Text(
+                                          data.getUserLevel,
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(color: primaryColor),
                                         ),
                                       ),
                                     ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      )
+                    ],
                   ),
                 ),
               ],

@@ -32,7 +32,7 @@ class _CircularTimerState extends State<CircularTimer> {
     _totalDuration = int.parse(widget.exerciseDuration);
     _startTimer();
     Future.delayed(Duration(seconds: _totalDuration - 3)).then((_) async {
-      _audio1 = await player.loop(alarmAudioPath);
+      // _audio1 = await player.loop(alarmAudioPath);
     });
 
     super.initState();
