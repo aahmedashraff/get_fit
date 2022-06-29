@@ -39,7 +39,7 @@ class GoalsScreen extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: SizeConfig.safeBlockVertical * 3,
+              height: SizeConfig.safeBlockVertical * 1.5,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 2.0),
@@ -65,7 +65,7 @@ class GoalsScreen extends StatelessWidget {
             RadioButtonContainer(
               title: titles[0],
               isFromLevelScreen: false,
-              assetName: 'assets/images/muscle.svg',
+              assetName: 'assets/images/muscle.png',
             ),
             SizedBox(
               height: SizeConfig.safeBlockVertical / 2,
@@ -74,7 +74,7 @@ class GoalsScreen extends StatelessWidget {
             RadioButtonContainer(
               title: titles[1],
               isFromLevelScreen: false,
-              assetName: 'assets/images/swim.svg',
+              assetName: 'assets/images/skills.png',
             ),
             SizedBox(
               height: SizeConfig.safeBlockVertical / 2,
@@ -83,7 +83,7 @@ class GoalsScreen extends StatelessWidget {
             RadioButtonContainer(
               title: titles[2],
               isFromLevelScreen: false,
-              assetName: 'assets/images/fat.svg',
+              assetName: 'assets/images/fat.png',
             ),
             SizedBox(
               height: SizeConfig.safeBlockVertical / 2,
@@ -92,7 +92,7 @@ class GoalsScreen extends StatelessWidget {
             RadioButtonContainer(
               title: titles[3],
               isFromLevelScreen: false,
-              assetName: 'assets/images/dumble.svg',
+              assetName: 'assets/images/dumble.png',
             ),
             SizedBox(
               height: SizeConfig.safeBlockVertical / 2,
@@ -101,7 +101,7 @@ class GoalsScreen extends StatelessWidget {
             RadioButtonContainer(
               title: titles[4],
               isFromLevelScreen: false,
-              assetName: 'assets/images/run.svg',
+              assetName: 'assets/images/run.png',
             ),
             Spacer(flex: 9),
             SizedBox(

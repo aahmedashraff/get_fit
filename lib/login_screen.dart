@@ -38,14 +38,14 @@ class _LoginScreenState extends State<LoginScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                height: SizeConfig.safeBlockHorizontal * 10,
+                height: SizeConfig.safeBlockVertical * 1.5,
               ),
               Text(
                 "Login By Email",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
               ),
               SizedBox(
-                height: SizeConfig.safeBlockHorizontal * 30,
+                height: SizeConfig.safeBlockVertical * 15,
               ),
 
               // Padding(

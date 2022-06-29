@@ -45,7 +45,7 @@ class _HeightScreenState extends State<HeightScreen> {
               Column(
                 children: <Widget>[
                   SizedBox(
-                    height: SizeConfig.safeBlockVertical * 5,
+                    height: SizeConfig.safeBlockVertical * 2,
                   ),
                   Text(
                     "Height",

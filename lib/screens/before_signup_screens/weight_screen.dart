@@ -1,7 +1,6 @@
 import 'package:CaptainSayedApp/screens/before_signup_screens/excercise_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../sizeConfig.dart';
 import '../../theme/theme_constant.dart';
@@ -34,7 +33,7 @@ class _WeightScreenState extends State<WeightScreen> {
               Column(
                 children: <Widget>[
                   SizedBox(
-                    height: SizeConfig.safeBlockVertical * 5,
+                    height: SizeConfig.safeBlockVertical * 1.8,
                   ),
                   Text(
                     "Weight",
@@ -75,7 +74,7 @@ class _WeightScreenState extends State<WeightScreen> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             RoundIconButton(
-                              icon: FontAwesomeIcons.minus,
+                              icon: Icons.add,
                               onPressed: () {
                                 setState(
                                   () {
@@ -121,7 +120,7 @@ class _WeightScreenState extends State<WeightScreen> {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 RoundIconButton(
-                                  icon: FontAwesomeIcons.plus,
+                                  icon: Icons.minimize_sharp,
                                   onPressed: () {
                                     setState(
                                       () {

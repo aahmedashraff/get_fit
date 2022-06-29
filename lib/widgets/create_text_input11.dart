@@ -52,6 +52,8 @@ class _CreateTextInputState extends State<CreateTextInput>
   var _showPass = false;
   @override
   Widget build(BuildContext context) {
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Stack(
       children: [
         Padding(
@@ -61,9 +63,7 @@ class _CreateTextInputState extends State<CreateTextInput>
             width: 397,
             child: TextFormField(
               cursorColor: primaryColor,
-              style: TextStyle(
-                color: Colors.black,
-              ),
+              style: TextStyle(color: Colors.black),
               decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
                   borderSide: const BorderSide(color: primaryColor, width: 2.0),
@@ -72,6 +72,7 @@ class _CreateTextInputState extends State<CreateTextInput>
                 errorText:
                     widget.isSubmitButtonClicked ? widget.snapShot.error : null,
                 filled: true,
+                fillColor: isDark ? Colors.white : Colors.grey.shade50,
                 focusColor: primaryColor,
                 suffixIcon: widget.label == "Email"
                     ? Icon(
@@ -80,7 +81,6 @@ class _CreateTextInputState extends State<CreateTextInput>
                       )
                     : null,
                 suffixIconColor: Colors.grey,
-                fillColor: Colors.white,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(13),
                 ),

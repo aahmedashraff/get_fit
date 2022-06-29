@@ -32,7 +32,7 @@ class _GenderScreenState extends State<GenderScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              height: SizeConfig.safeBlockVertical * 5,
+              height: SizeConfig.safeBlockVertical * 1.5,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 2.0),

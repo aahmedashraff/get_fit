@@ -84,7 +84,7 @@ class RadioButtonContainer extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  SvgPicture.asset(
+                  Image.asset(
                     assetName,
                     height: 48,
                     // width: 57,

@@ -38,7 +38,7 @@ class _ExercisePlaceScreenState extends State<ExercisePlaceScreen> {
               Column(
                 children: <Widget>[
                   SizedBox(
-                    height: SizeConfig.safeBlockVertical * 5,
+                    height: SizeConfig.safeBlockVertical * 1.5,
                   ),
                   Text(
                     "Exercise",

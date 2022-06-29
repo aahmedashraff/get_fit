@@ -33,6 +33,7 @@ import 'package:CaptainSayedApp/screens/home_screen2/widgets/lose_weight.dart';
 import 'package:CaptainSayedApp/screens/message_screen/message.dart';
 import 'package:CaptainSayedApp/screens/message_screen/screen_widgets/new_messege.dart';
 import 'package:CaptainSayedApp/screens/message_screen/screen_widgets/notification_screen.dart';
+import 'package:CaptainSayedApp/screens/premium_acc_screen/buy_program.dart';
 import 'package:CaptainSayedApp/screens/premium_acc_screen/premium_acc_screen.dart';
 import 'package:CaptainSayedApp/screens/profile_screen/account_data_edit.dart';
 import 'package:CaptainSayedApp/screens/profile_screen/change_name.dart';
@@ -58,6 +59,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'dimensions.dart';
 import 'firebase_options.dart';
@@ -65,13 +67,14 @@ import 'login_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(
     MyApp(),
   );
 }
 
-ThemeManager themeManager = ThemeManager();
+ThemeManager _themeManager = ThemeManager();
 
 class MyApp extends StatefulWidget {
   @override
@@ -79,23 +82,22 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  void dispose() {
+    _themeManager.removeListener(themeListener);
+    super.dispose();
+  }
+
   @override
-  // void dispose() {
-  //   themeManager.removeListener(themeListener);
-  //   super.dispose();
-  // }
-  //
-  // @override
-  // void initState() {
-  //   themeManager.addListener(themeListener);
-  //   super.initState();
-  // }
-  //
-  // themeListener() {
-  //   if (mounted) {
-  //     setState(() {});
-  //   }
-  // }
+  void initState() {
+    _themeManager.addListener(themeListener);
+    super.initState();
+  }
+
+  themeListener() {
+    if (mounted) {
+      setState(() {});
+    }
+  }
 
   final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
   static const initializationSettingsAndroid =
@@ -130,28 +132,6 @@ class _MyAppState extends State<MyApp> {
   var _isFirstTimeToCheckAuthState = true;
 
   @override
-  void initState() {
-    Future.delayed(Duration.zero).then((_) async {
-      await flutterLocalNotificationsPlugin.initialize(
-        initializationSettings,
-        onSelectNotification: (_) {
-          Navigator.pushNamed(context, "/");
-          return;
-        },
-      );
-      await flutterLocalNotificationsPlugin.periodicallyShow(
-        1,
-        'Get Fit',
-        'Come and Practice',
-        RepeatInterval.weekly,
-        platformChannelSpecifics,
-        androidAllowWhileIdle: true,
-      );
-    });
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
@@ -181,8 +161,8 @@ class _MyAppState extends State<MyApp> {
             theme: notifier.darkTheme
                 ? ThemeClass.darkTheme
                 : ThemeClass.lightTheme,
+            themeMode: _themeManager.themeMode,
             darkTheme: ThemeClass.darkTheme,
-            themeMode: themeManager.themeMode,
             // ThemeData(
             //   unselectedWidgetColor: Colors.white,
             //   sliderTheme: SliderThemeData(
@@ -243,17 +223,18 @@ class _MyAppState extends State<MyApp> {
               OldScreen.screenName: (_) => LayoutOfAllFirstScreens(OldScreen()),
               WeightScreen.screenName: (_) =>
                   LayoutOfAllFirstScreens(WeightScreen()),
+
               HeightScreen.screenName: (_) =>
                   LayoutOfAllFirstScreens(HeightScreen()),
               CongratulationScreen.screenName: (_) =>
                   LayoutOfAllFirstScreens(CongratulationScreen()),
               ChangePassScreen.screenName: (_) =>
                   LayoutOfAllFirstScreens(ChangePassScreen()),
-              ProfileScreen.screenName: (_) =>
-                  LayoutOfAllFirstScreens(ProfileScreen()),
 
               ExercisePlaceScreen.screenName: (_) =>
                   LayoutOfAllFirstScreens(ExercisePlaceScreen()),
+              BuyProgramScreen.screenName: (_) =>
+                  LayoutOfAllFirstScreens(BuyProgramScreen()),
               UploadImageScreen.screenName: (_) =>
                   LayoutOfAllFirstScreens(UploadImageScreen()),
               GoalsScreen.screenName: (_) =>
@@ -279,7 +260,6 @@ class _MyAppState extends State<MyApp> {
               TimerScreen.screenName: (_) => TimerScreen(),
               DownloadsScreen.screenName: (_) => DownloadsScreen(),
               ExerciseDetailsScreen.screenName: (_) => ExerciseDetailsScreen(),
-              ProfileScreen.screenName: (_) => ProfileScreen(),
               SettingScreen.screenName: (_) => SettingScreen(),
               ProgramScreen.screenName: (_) => ProgramScreen(),
               RestBetweenRoundsScreen.screenName: (_) =>
@@ -334,7 +314,10 @@ class HomeScreen extends StatelessWidget {
         toolbarHeight: 90,
         leading: GestureDetector(
           onTap: () {
-            Navigator.of(context).pushNamed(ProfileScreen.screenName);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ProfileScreen()),
+            );
           },
           child: Padding(
             padding: EdgeInsets.only(left: 5),

@@ -3,13 +3,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeManager with ChangeNotifier {
   final String Key = 'theme';
-  SharedPreferences prefs;
+  SharedPreferences _prefs;
   bool _darktheme;
   bool get darkTheme => _darktheme;
   ThemeMode _themeMode = ThemeMode.light;
   get themeMode => _themeMode;
+
   ThemeManager() {
     _darktheme = true;
+    _loadFromPrefs();
   }
   toggleTheme() {
     _darktheme = !_darktheme;
@@ -20,17 +22,17 @@ class ThemeManager with ChangeNotifier {
   }
 
   _initPrefs() async {
-    if (prefs == null) prefs = await SharedPreferences.getInstance();
+    if (_prefs == null) _prefs = await SharedPreferences.getInstance();
   }
 
   _loadFromPrefs() async {
     await _initPrefs();
-    _darktheme = prefs.getBool(Key) ?? true;
+    _darktheme = _prefs.getBool(Key) ?? true;
     notifyListeners();
   }
 
   _saveToPrefs() async {
     await _initPrefs();
-    prefs.setBool(Key, _darktheme);
+    _prefs.setBool(Key, _darktheme);
   }
 }

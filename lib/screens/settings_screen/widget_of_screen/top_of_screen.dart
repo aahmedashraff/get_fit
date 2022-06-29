@@ -1,8 +1,12 @@
 import 'package:CaptainSayedApp/sizeConfig.dart';
 import 'package:flutter/material.dart';
 
+import '../../../theme/theme_constant.dart';
+
 class TopOfScreen extends StatelessWidget {
-  @override
+  final String lable;
+
+  const TopOfScreen({Key key, @required this.lable}) : super(key: key);
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.fromLTRB(
@@ -13,19 +17,22 @@ class TopOfScreen extends StatelessWidget {
       ),
       child: Row(
         children: [
-          IconButton(
-            icon: Icon(
+          GestureDetector(
+            onTap: () {
+              Future.delayed(Duration(milliseconds: 150))
+                  .then((_) => Navigator.of(context).pop());
+              FocusScope.of(context).unfocus();
+            },
+            child: Icon(
               Icons.arrow_back_ios_sharp,
-              color: Theme.of(context).primaryColor,
+              color: primaryColor,
             ),
-            onPressed: () => Navigator.of(context).pop(),
           ),
-          SizedBox(width: SizeConfig.safeBlockVertical * 13),
+          SizedBox(width: SizeConfig.safeBlockVertical * 15),
           Text(
-            "Settings",
+            '$lable',
             style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: SizeConfig.safeBlockHorizontal * 4,
+              fontSize: 20,
             ),
           )
         ],

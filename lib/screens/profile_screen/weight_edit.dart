@@ -1,8 +1,5 @@
-import 'package:CaptainSayedApp/screens/before_signup_screens/excercise_screen.dart';
 import 'package:CaptainSayedApp/screens/profile_screen/edit_save_btn.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../sizeConfig.dart';
 import '../../theme/theme_constant.dart';
@@ -60,7 +57,7 @@ class _WeightEditScreenState extends State<WeightEditScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 RoundIconButton(
-                    icon: FontAwesomeIcons.minus,
+                    icon: Icons.minimize,
                     onPressed: () {
                       setState(() {
                         weight--;
@@ -99,7 +96,7 @@ class _WeightEditScreenState extends State<WeightEditScreen> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     RoundIconButton(
-                      icon: FontAwesomeIcons.plus,
+                      icon: Icons.add,
                       onPressed: () {
                         setState(
                           () {

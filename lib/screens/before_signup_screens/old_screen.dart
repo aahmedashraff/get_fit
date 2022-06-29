@@ -27,7 +27,7 @@ class _OldScreenState extends State<OldScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             SizedBox(
-              height: SizeConfig.safeBlockVertical * 5,
+              height: SizeConfig.safeBlockVertical * 2,
             ),
             Text(
               "Old",

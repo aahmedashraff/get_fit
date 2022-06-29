@@ -1,3 +1,4 @@
+import 'package:CaptainSayedApp/screens/premium_acc_screen/buy_program.dart';
 import 'package:CaptainSayedApp/sizeConfig.dart';
 import 'package:CaptainSayedApp/widgets/next_or_submit_button.dart';
 import 'package:flutter/material.dart';
@@ -75,12 +76,13 @@ class PremiumAccScreen extends StatelessWidget {
                               style: TextStyle(fontSize: 22),
                             ),
                             SizedBox(height: 15),
-                            Text(
-                              'Get Fit Premium Offers Many Powerful Programs That Focus More On Developing Your Body Quickly And Effectively Than Routine Programs',
-                              style: TextStyle(
-                                  fontSize: 13, color: Colors.grey.shade500),
-                              maxLines: 9,
-                              overflow: TextOverflow.ellipsis,
+                            Padding(
+                              padding: const EdgeInsets.only(right: 15.0),
+                              child: Text(
+                                'Get Fit Premium Offers Many Powerful Programs That Focus More On Developing Your Body Quickly And Effectively Than Routine Programs',
+                                style: TextStyle(
+                                    fontSize: 13, color: Colors.grey.shade500),
+                              ),
                             ),
                           ],
                         ),
@@ -115,17 +117,19 @@ class PremiumAccScreen extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            SizedBox(height: 7),
                             Text(
                               'Private Follow Up',
                               style: TextStyle(fontSize: 22),
                             ),
                             SizedBox(height: 15),
-                            Text(
-                              'Subscribing To Get Fit Premium Gives You A Very Powerful And Important Advantage, To Personally Follow Captain Syed Hussain, Someone With Over 20 Years Of Online Training Experience.',
-                              style: TextStyle(
-                                  fontSize: 12, color: Colors.grey.shade500),
-                              maxLines: 9,
-                              overflow: TextOverflow.ellipsis,
+                            Padding(
+                              padding: const EdgeInsets.only(right: 15.0),
+                              child: Text(
+                                'Subscribing To Get Fit Premium Gives You A Very Powerful And Important Advantage, To Personally Follow Captain Syed Hussain, Someone With Over 20 Years Of Online Training Experience.',
+                                style: TextStyle(
+                                    fontSize: 12, color: Colors.grey.shade500),
+                              ),
                             ),
                           ],
                         ),
@@ -160,17 +164,19 @@ class PremiumAccScreen extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            SizedBox(height: 4),
                             Text(
                               'Constant Updates',
                               style: TextStyle(fontSize: 22),
                             ),
-                            SizedBox(height: 15),
-                            Text(
-                              'Getfit Premium Has A Working Team Around The Clock That Provides Periodic Updates And Is Constantly Developing The Application',
-                              style: TextStyle(
-                                  fontSize: 12, color: Colors.grey.shade500),
-                              maxLines: 9,
-                              overflow: TextOverflow.ellipsis,
+                            SizedBox(height: 8),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 15.0),
+                              child: Text(
+                                'Getfit Premium Has A Working Team Around The Clock That Provides Periodic Updates And Is Constantly Developing The Application',
+                                style: TextStyle(
+                                    fontSize: 12, color: Colors.grey.shade500),
+                              ),
                             ),
                           ],
                         ),
@@ -180,7 +186,11 @@ class PremiumAccScreen extends StatelessWidget {
                 ),
               ),
             ),
-            NextOrSubmitButton('Subscribe Now'),
+            NextOrSubmitButton(
+              'Subscribe Now',
+              onPress: () =>
+                  Navigator.of(context).pushNamed(BuyProgramScreen.screenName),
+            ),
           ],
         ),
       ),

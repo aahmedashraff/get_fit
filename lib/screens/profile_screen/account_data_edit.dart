@@ -28,7 +28,7 @@ class _AccountDataEditState extends State<AccountDataEdit> {
         height: SizeConfig.screenHeight,
         child: Column(
           children: [
-            SizedBox(height: SizeConfig.safeBlockVertical),
+            SizedBox(height: SizeConfig.safeBlockVertical * 4),
             Text(
               'Account Data',
               style: TextStyle(fontSize: 20),
@@ -44,8 +44,7 @@ class _AccountDataEditState extends State<AccountDataEdit> {
                   ),
                   borderRadius: BorderRadius.circular(10),
                 ),
-                height: 355,
-                width: 397,
+                height: SizeConfig.safeBlockVertical * 40,
                 child: Wrap(
                   children: [
                     Column(
@@ -75,7 +74,12 @@ class _AccountDataEditState extends State<AccountDataEdit> {
                               GestureDetector(
                                 onTap: () => Navigator.of(context)
                                     .pushNamed(ChangeNameScreen.screenName),
-                                child: Image.asset('assets/images/pen.png'),
+                                child: Image.asset(
+                                  'assets/images/pen.png',
+                                  color: isDark
+                                      ? Colors.grey.shade50
+                                      : Colors.black,
+                                ),
                               ),
                             ],
                           ),
@@ -110,7 +114,11 @@ class _AccountDataEditState extends State<AccountDataEdit> {
                                 style: TextStyle(color: Colors.grey.shade500),
                               ),
                               Spacer(),
-                              Image.asset('assets/images/pen.png'),
+                              Image.asset(
+                                'assets/images/pen.png',
+                                color:
+                                    isDark ? Colors.grey.shade50 : Colors.black,
+                              ),
                             ],
                           ),
                         ),
@@ -147,7 +155,12 @@ class _AccountDataEditState extends State<AccountDataEdit> {
                               GestureDetector(
                                 onTap: () => Navigator.of(context)
                                     .pushNamed(ChangePassScreen.screenName),
-                                child: Image.asset('assets/images/pen.png'),
+                                child: Image.asset(
+                                  'assets/images/pen.png',
+                                  color: isDark
+                                      ? Colors.grey.shade50
+                                      : Colors.black,
+                                ),
                               ),
                             ],
                           ),
@@ -162,6 +175,7 @@ class _AccountDataEditState extends State<AccountDataEdit> {
                 ),
               ),
             ),
+            SizedBox(height: SizeConfig.safeBlockVertical * 26),
             Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [

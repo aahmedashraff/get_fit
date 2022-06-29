@@ -33,7 +33,9 @@ class _SettingScreenState extends State<SettingScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              TopOfScreen(),
+              TopOfScreen(
+                lable: 'Settings',
+              ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -72,23 +74,29 @@ class _SettingScreenState extends State<SettingScreen> {
                             padding: const EdgeInsets.only(top: 25, left: 30),
                             child: Text('Personal Data'),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 25, left: 170),
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => PersonalEdit(),
+                          Row(
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 25, left: 160),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) => PersonalEdit(),
+                                      ),
+                                    );
+                                  },
+                                  child: Image.asset(
+                                    'assets/images/down-arrow.png',
+                                    color: isDark
+                                        ? Colors.grey.shade50
+                                        : Colors.black,
                                   ),
-                                );
-                              },
-                              child: Image.asset(
-                                'assets/images/down-arrow.png',
-                                color:
-                                    isDark ? Colors.grey.shade50 : Colors.black,
+                                ),
                               ),
-                            ),
+                            ],
                           ),
                         ],
                       ),
@@ -107,7 +115,7 @@ class _SettingScreenState extends State<SettingScreen> {
                             child: Text('Account Data'),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 25, left: 170),
+                            padding: const EdgeInsets.only(top: 25, left: 160),
                             child: GestureDetector(
                               onTap: () => Navigator.of(context)
                                   .pushNamed(AccountDataEdit.screenName),
@@ -162,7 +170,7 @@ class _SettingScreenState extends State<SettingScreen> {
                             child: Text('Premium Subscription'),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 25, left: 112),
+                            padding: const EdgeInsets.only(top: 25, left: 102),
                             child: Image.asset(
                               'assets/images/down-arrow.png',
                               color:
@@ -186,7 +194,7 @@ class _SettingScreenState extends State<SettingScreen> {
                             child: Text('Change your exercise'),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 25, left: 115),
+                            padding: const EdgeInsets.only(top: 25, left: 105),
                             child: Image.asset(
                               'assets/images/down-arrow.png',
                               color:
@@ -266,15 +274,14 @@ class _SettingScreenState extends State<SettingScreen> {
                             child: Consumer<ThemeManager>(
                               builder: (context, notifier, child) =>
                                   FlutterSwitch(
-                                      toggleSize: 25,
-                                      height:
-                                          SizeConfig.safeBlockVertical * 3.4,
-                                      width:
-                                          SizeConfig.safeBlockHorizontal * 15.5,
-                                      value: notifier.darkTheme,
-                                      onToggle: (val) {
-                                        notifier.toggleTheme();
-                                      }),
+                                toggleSize: 25,
+                                height: SizeConfig.safeBlockVertical * 3.4,
+                                width: SizeConfig.safeBlockHorizontal * 15.5,
+                                value: notifier.darkTheme,
+                                onToggle: (val) {
+                                  notifier.toggleTheme();
+                                },
+                              ),
                             ),
                           ),
                         ],

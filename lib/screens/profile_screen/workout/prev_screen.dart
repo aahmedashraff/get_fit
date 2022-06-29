@@ -10,6 +10,8 @@ class PrevScreen extends StatefulWidget {
 class _PrevScreenState extends State<PrevScreen> {
   @override
   Widget build(BuildContext context) {
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Scaffold(
       body: Container(
         child: Column(
@@ -40,9 +42,9 @@ class _PrevScreenState extends State<PrevScreen> {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.grey.shade50,
+                    color: isDark ? Colors.grey.shade900 : Colors.grey.shade50,
                     border: Border.all(
-                      color: Colors.grey.shade50,
+                      color: isDark ? Colors.transparent : Colors.grey.shade50,
                     ),
                     borderRadius: BorderRadius.circular(10),
                   ),
