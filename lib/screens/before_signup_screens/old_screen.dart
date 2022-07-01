@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:numberpicker/numberpicker.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../sizeConfig.dart';
 import '../../theme/theme_constant.dart';
@@ -19,68 +20,82 @@ class _OldScreenState extends State<OldScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return Scaffold(
-      body: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        width: SizeConfig.screenWidth,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(
-              height: SizeConfig.safeBlockVertical * 2,
-            ),
-            Text(
-              "Old",
-              style: TextStyle(
-                fontSize: 20,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              child: SvgPicture.asset('assets/images/oldindi.svg'),
-            ),
-            SizedBox(
-              height: SizeConfig.safeBlockVertical * 3,
-            ),
-            Text(
-              "How old are you?",
-              style: TextStyle(
-                fontSize: 17,
-              ),
-            ),
-            NumberPicker(
-              itemCount: 6,
-              itemHeight: SizeConfig.safeBlockVertical * 5,
-              itemWidth: 400,
-              haptics: true,
-              minValue: 0,
-              maxValue: 70,
-              textStyle: TextStyle(fontSize: 20),
-              selectedTextStyle: TextStyle(
-                color: primaryColor,
-                fontSize: 40,
-              ),
-              value: currentAgeValue,
-              onChanged: (value) => setState(() => currentAgeValue = value),
-            ),
-            SizedBox(
-              height: SizeConfig.safeBlockVertical * 2,
-            ),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  GestureDetector(
-                    onTap: () => Navigator.of(context)
-                        .pushNamed(HeightScreen.screenName),
-                    child: NextOrSubmitButton("Next"),
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
+
+    return Sizer(
+      builder: (context, orientation, deviceType) {
+        return Scaffold(
+          body: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            width: SizeConfig.screenWidth,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(
+                  height: 6.5.h,
+                ),
+                Text(
+                  "Old",
+                  style: TextStyle(
+                    fontSize: 20.sp,
                   ),
-                ],
-              ),
+                ),
+                SizedBox(
+                  height: 4.h,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, right: 20),
+                  child: isDark
+                      ? Image.asset('assets/images/oldindidark.png')
+                      : SvgPicture.asset('assets/images/oldindi.svg'),
+                ),
+                SizedBox(
+                  height: 3.h,
+                ),
+                Text(
+                  "How old are you?",
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                  ),
+                ),
+                SizedBox(
+                  height: 4.h,
+                ),
+                NumberPicker(
+                  itemCount: 7,
+                  itemHeight: 6.h,
+                  itemWidth: 400.w,
+                  haptics: true,
+                  minValue: 0,
+                  maxValue: 70,
+                  textStyle: TextStyle(fontSize: 15.sp),
+                  selectedTextStyle: TextStyle(
+                    color: primaryColor,
+                    fontSize: 35.sp,
+                  ),
+                  value: currentAgeValue,
+                  onChanged: (value) => setState(() => currentAgeValue = value),
+                ),
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      GestureDetector(
+                        onTap: () => Navigator.of(context)
+                            .pushNamed(HeightScreen.screenName),
+                        child: NextOrSubmitButton("Next"),
+                      ),
+                      SizedBox(
+                        height: 1.h,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../../sizeConfig.dart';
 
@@ -38,25 +39,40 @@ class _PersonEditPhoto extends State<PersonEditPhoto> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      child: FutureBuilder(
-        future: Provider.of<UserData>(context, listen: !widget.isEditable)
-            .getUserImagePath,
-        builder: (_, snap) => CircleAvatar(
-          radius: SizeConfig.safeBlockVertical * 4.68,
-          backgroundImage: snap.connectionState == ConnectionState.waiting
-              ? null
-              : (snap.data == null && _currentlySelectedImage == null
-                  ? null
-                  : FileImage(
-                      _currentlySelectedImage != null
-                          ? _currentlySelectedImage
-                          : File(snap.data),
-                    )),
-          backgroundColor: Colors.grey,
-        ),
-      ),
-      onTap: widget.isEditable ? getUserPicture : null,
+    return Sizer(
+      builder: (context, orientation, deviceType) {
+        return GestureDetector(
+          child: FutureBuilder(
+            future: Provider.of<UserData>(context, listen: !widget.isEditable)
+                .getUserImagePath,
+            builder: (_, snap) => Stack(children: [
+              CircleAvatar(
+                radius: SizeConfig.safeBlockVertical * 4.68,
+                backgroundImage: snap.connectionState == ConnectionState.waiting
+                    ? null
+                    : (snap.data == null && _currentlySelectedImage == null
+                        ? null
+                        : FileImage(
+                            _currentlySelectedImage != null
+                                ? _currentlySelectedImage
+                                : File(snap.data),
+                          )),
+                backgroundColor: Colors.grey.shade800,
+              ),
+              CircleAvatar(
+                radius: SizeConfig.safeBlockVertical * 4.68,
+                backgroundColor: Colors.grey.shade800.withOpacity(0.5),
+              ),
+              Positioned(
+                left: 7.w,
+                bottom: SizeConfig.safeBlockVertical * 3.5,
+                child: Image.asset('assets/images/camera.png'),
+              )
+            ]),
+          ),
+          onTap: widget.isEditable ? getUserPicture : null,
+        );
+      },
     );
   }
 }

@@ -1,6 +1,8 @@
 // @dart=2.9
 import 'package:CaptainSayedApp/providers/app_data.dart';
 import 'package:CaptainSayedApp/providers/bloc/bloc.dart';
+import 'package:sizer/sizer.dart';
+
 import 'package:CaptainSayedApp/providers/program_progress.dart';
 import 'package:CaptainSayedApp/providers/user_data.dart';
 import 'package:CaptainSayedApp/repos/progress_fun.dart';
@@ -155,127 +157,116 @@ class _MyAppState extends State<MyApp> {
         create: (_) => ThemeManager(),
         child: Consumer<ThemeManager>(
             builder: (context, ThemeManager notifier, child) {
-          return MaterialApp(
-            title: 'Get Fit',
-            debugShowCheckedModeBanner: false,
-            theme: notifier.darkTheme
-                ? ThemeClass.darkTheme
-                : ThemeClass.lightTheme,
-            themeMode: _themeManager.themeMode,
-            darkTheme: ThemeClass.darkTheme,
-            // ThemeData(
-            //   unselectedWidgetColor: Colors.white,
-            //   sliderTheme: SliderThemeData(
-            //     thumbColor: Color(0xFFEE6F57),
-            //     activeTrackColor: Color(0xFFEE6F57),
-            //     inactiveTrackColor: Color(0xFFEE6F57).withOpacity(.3),
-            //   ),
-            //   textTheme: TextTheme(
-            //     headline2: TextStyle(
-            //       color: Colors.white,
-            //       fontWeight: FontWeight.w700,
-            //     ),
-            //   ),
-            //   primaryColor: Color(0xFFEE6F57),
-            //   accentColor: Color(0xFFEE6F57),
-            //   fontFamily: "Segoe UI",
-            // )
+          return Sizer(
+            builder: (context, orientation, deviceType) {
+              return MaterialApp(
+                title: 'Get Fit',
+                debugShowCheckedModeBanner: false,
+                theme: notifier.darkTheme
+                    ? ThemeClass.darkTheme
+                    : ThemeClass.lightTheme,
+                themeMode: _themeManager.themeMode,
+                darkTheme: ThemeClass.lightTheme,
+                home: Consumer<Auth>(builder: (context, auth, __) {
+                  SizeConfig().init(context);
+                  Dimensions().init(context);
+                  final userData =
+                      Provider.of<UserData>(context, listen: false);
+                  return FutureBuilder(
+                      future: userData.prepareAllUserDataAtAppLaunch(),
+                      builder: (_, snap) {
+                        if (snap.connectionState == ConnectionState.waiting) {
+                          return NewSplash(isJustWatingForStreamBuilder: true);
+                        } else if (userData.userToken != null &&
+                            userData.userToken.isNotEmpty) {
+                          if (_isFirstTimeToCheckAuthState) {
+                            _isFirstTimeToCheckAuthState = false;
 
-            home: Consumer<Auth>(builder: (context, auth, __) {
-              SizeConfig().init(context);
-              Dimensions().init(context);
-              final userData = Provider.of<UserData>(context, listen: false);
-              return FutureBuilder(
-                  future: userData.prepareAllUserDataAtAppLaunch(),
-                  builder: (_, snap) {
-                    if (snap.connectionState == ConnectionState.waiting) {
-                      return NewSplash(isJustWatingForStreamBuilder: true);
-                    } else if (userData.userToken != null &&
-                        userData.userToken.isNotEmpty) {
-                      if (_isFirstTimeToCheckAuthState) {
-                        _isFirstTimeToCheckAuthState = false;
+                            return MySplash(isLogedIn: true);
+                          } else {
+                            print("userLoggedIn");
+                            print(userData.userToken);
+                            return HomeScreen();
+                          }
+                        } else if (_isFirstTimeToCheckAuthState) {
+                          _isFirstTimeToCheckAuthState = false;
+                          //  print("fdf111111111111111111111111111dkj");
+                          return MySplash(isLogedIn: false);
+                        } else {
+                          //  print("fdf222222222222222222222222222222dkj");
+                          return AfterSplash();
+                        }
+                      });
+                }),
+                routes: {
+                  GenderScreen.screenName: (_) =>
+                      LayoutOfAllFirstScreens(GenderScreen()),
+                  AccountDataEdit.screenName: (_) =>
+                      LayoutOfAllFirstScreens(AccountDataEdit()),
+                  ChangeNameScreen.screenName: (_) =>
+                      LayoutOfAllFirstScreens(ChangeNameScreen()),
+                  LevelScreen.screenName: (_) =>
+                      LayoutOfAllFirstScreens(LevelScreen()),
+                  OldScreen.screenName: (_) =>
+                      LayoutOfAllFirstScreens(OldScreen()),
+                  WeightScreen.screenName: (_) =>
+                      LayoutOfAllFirstScreens(WeightScreen()),
 
-                        return MySplash(isLogedIn: true);
-                      } else {
-                        print("userLoggedIn");
-                        print(userData.userToken);
-                        return HomeScreen();
-                      }
-                    } else if (_isFirstTimeToCheckAuthState) {
-                      _isFirstTimeToCheckAuthState = false;
-                      //  print("fdf111111111111111111111111111dkj");
-                      return MySplash(isLogedIn: false);
-                    } else {
-                      //  print("fdf222222222222222222222222222222dkj");
-                      return AfterSplash();
-                    }
-                  });
-            }),
-            routes: {
-              GenderScreen.screenName: (_) =>
-                  LayoutOfAllFirstScreens(GenderScreen()),
-              AccountDataEdit.screenName: (_) =>
-                  LayoutOfAllFirstScreens(AccountDataEdit()),
-              ChangeNameScreen.screenName: (_) =>
-                  LayoutOfAllFirstScreens(ChangeNameScreen()),
-              LevelScreen.screenName: (_) =>
-                  LayoutOfAllFirstScreens(LevelScreen()),
-              OldScreen.screenName: (_) => LayoutOfAllFirstScreens(OldScreen()),
-              WeightScreen.screenName: (_) =>
-                  LayoutOfAllFirstScreens(WeightScreen()),
+                  HeightScreen.screenName: (_) =>
+                      LayoutOfAllFirstScreens(HeightScreen()),
+                  CongratulationScreen.screenName: (_) =>
+                      LayoutOfAllFirstScreens(CongratulationScreen()),
+                  ChangePassScreen.screenName: (_) =>
+                      LayoutOfAllFirstScreens(ChangePassScreen()),
 
-              HeightScreen.screenName: (_) =>
-                  LayoutOfAllFirstScreens(HeightScreen()),
-              CongratulationScreen.screenName: (_) =>
-                  LayoutOfAllFirstScreens(CongratulationScreen()),
-              ChangePassScreen.screenName: (_) =>
-                  LayoutOfAllFirstScreens(ChangePassScreen()),
-
-              ExercisePlaceScreen.screenName: (_) =>
-                  LayoutOfAllFirstScreens(ExercisePlaceScreen()),
-              BuyProgramScreen.screenName: (_) =>
-                  LayoutOfAllFirstScreens(BuyProgramScreen()),
-              UploadImageScreen.screenName: (_) =>
-                  LayoutOfAllFirstScreens(UploadImageScreen()),
-              GoalsScreen.screenName: (_) =>
-                  LayoutOfAllFirstScreens(GoalsScreen()),
-              LoginScreen.screenName: (_) => Provider(
-                    create: (_) => Bloc(),
-                    child: LayoutOfAllFirstScreens(LoginScreen()),
-                  ),
-              ResetPasswordScreen.screenName: (_) => Provider(
-                    create: (_) => Bloc(),
-                    child: LayoutOfAllFirstScreens(ResetPasswordScreen()),
-                  ),
-              SignUpScreen.screenName: (_) => Provider(
-                    create: (_) => Bloc(),
-                    child: LayoutOfAllFirstScreens(SignUpScreen()),
-                  ),
-              PersonalEdit.screenName: (_) => Provider(
-                    create: (_) => Bloc(),
-                    child: LayoutOfAllFirstScreens(PersonalEdit()),
-                  ),
-              //HomeScreen.screenName: (_) => HomeScreen(),
-              ExerciseScreen.screenName: (_) => ExerciseScreen(),
-              TimerScreen.screenName: (_) => TimerScreen(),
-              DownloadsScreen.screenName: (_) => DownloadsScreen(),
-              ExerciseDetailsScreen.screenName: (_) => ExerciseDetailsScreen(),
-              SettingScreen.screenName: (_) => SettingScreen(),
-              ProgramScreen.screenName: (_) => ProgramScreen(),
-              RestBetweenRoundsScreen.screenName: (_) =>
-                  RestBetweenRoundsScreen(),
-              FineshWorkoutScreen.screenName: (_) => FineshWorkoutScreen(),
-              DayExercisesScreen.screenName: (_) => DayExercisesScreen(),
-              DetailsForExerciseInDayScreen.screenName: (_) =>
-                  DetailsForExerciseInDayScreen(),
-              ProgramTimerScreen.screenName: (_) => ProgramTimerScreen(),
-              ProgramRestBetweenRoundsScreen.screenName: (_) =>
-                  ProgramRestBetweenRoundsScreen(),
-              NewMessageScreen.screenName: (_) => NewMessageScreen(),
-              MessageScreen.screenName: (_) => MessageScreen(),
-              NotificationScreen.screenName: (_) => NotificationScreen(),
-              PremiumAccScreen.screenName: (_) => PremiumAccScreen(),
-              // Splash0.screenName: (_) => Splash0()
+                  ExercisePlaceScreen.screenName: (_) =>
+                      LayoutOfAllFirstScreens(ExercisePlaceScreen()),
+                  BuyProgramScreen.screenName: (_) =>
+                      LayoutOfAllFirstScreens(BuyProgramScreen()),
+                  UploadImageScreen.screenName: (_) =>
+                      LayoutOfAllFirstScreens(UploadImageScreen()),
+                  GoalsScreen.screenName: (_) =>
+                      LayoutOfAllFirstScreens(GoalsScreen()),
+                  LoginScreen.screenName: (_) => Provider(
+                        create: (_) => Bloc(),
+                        child: LayoutOfAllFirstScreens(LoginScreen()),
+                      ),
+                  ResetPasswordScreen.screenName: (_) => Provider(
+                        create: (_) => Bloc(),
+                        child: LayoutOfAllFirstScreens(ResetPasswordScreen()),
+                      ),
+                  SignUpScreen.screenName: (_) => Provider(
+                        create: (_) => Bloc(),
+                        child: LayoutOfAllFirstScreens(SignUpScreen()),
+                      ),
+                  PersonalEdit.screenName: (_) => Provider(
+                        create: (_) => Bloc(),
+                        child: LayoutOfAllFirstScreens(PersonalEdit()),
+                      ),
+                  //HomeScreen.screenName: (_) => HomeScreen(),
+                  ExerciseScreen.screenName: (_) => ExerciseScreen(),
+                  TimerScreen.screenName: (_) => TimerScreen(),
+                  DownloadsScreen.screenName: (_) => DownloadsScreen(),
+                  ExerciseDetailsScreen.screenName: (_) =>
+                      ExerciseDetailsScreen(),
+                  SettingScreen.screenName: (_) => SettingScreen(),
+                  ProgramScreen.screenName: (_) => ProgramScreen(),
+                  RestBetweenRoundsScreen.screenName: (_) =>
+                      RestBetweenRoundsScreen(),
+                  FineshWorkoutScreen.screenName: (_) => FineshWorkoutScreen(),
+                  DayExercisesScreen.screenName: (_) => DayExercisesScreen(),
+                  DetailsForExerciseInDayScreen.screenName: (_) =>
+                      DetailsForExerciseInDayScreen(),
+                  ProgramTimerScreen.screenName: (_) => ProgramTimerScreen(),
+                  ProgramRestBetweenRoundsScreen.screenName: (_) =>
+                      ProgramRestBetweenRoundsScreen(),
+                  NewMessageScreen.screenName: (_) => NewMessageScreen(),
+                  MessageScreen.screenName: (_) => MessageScreen(),
+                  NotificationScreen.screenName: (_) => NotificationScreen(),
+                  PremiumAccScreen.screenName: (_) => PremiumAccScreen(),
+                  // Splash0.screenName: (_) => Splash0()
+                },
+              );
             },
           );
         }),
@@ -309,9 +300,11 @@ class HomeScreen extends StatelessWidget {
     bool isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
+      resizeToAvoidBottomInset: true,
+
       appBar: AppBar(
         backgroundColor: isDark ? Colors.grey.shade900 : Colors.grey.shade50,
-        toolbarHeight: 90,
+        toolbarHeight: 70,
         leading: GestureDetector(
           onTap: () {
             Navigator.push(
@@ -320,7 +313,7 @@ class HomeScreen extends StatelessWidget {
             );
           },
           child: Padding(
-            padding: EdgeInsets.only(left: 5),
+            padding: EdgeInsets.only(left: 1.3.w),
             child: UserPhotoHome(false),
           ),
         ),
@@ -331,7 +324,7 @@ class HomeScreen extends StatelessWidget {
                 Text(
                   "Welcome Back",
                   style: TextStyle(
-                    fontSize: 19,
+                    fontSize: 14.sp,
                     color: isDark ? Colors.white : Colors.black45,
                   ),
                 ),
@@ -347,7 +340,7 @@ class HomeScreen extends StatelessWidget {
                         'Ahmed Ashraf',
                         style: TextStyle(
                             color: isDark ? Colors.white : Colors.black54,
-                            fontSize: 23,
+                            fontSize: 17.sp,
                             overflow: TextOverflow.fade,
                             fontWeight: FontWeight.bold),
                       ),
@@ -355,7 +348,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  width: 15,
+                  width: 5.w,
                 ),
                 Image.asset('assets/images/strong.png')
               ],
@@ -375,7 +368,6 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      // resizeToAvoidBottomInset: true,
       // key: _drawerKey,
       // drawer: Theme(
       //   data: Theme.of(context).copyWith(canvasColor: Color(0xFFE9E9E9)),
@@ -394,23 +386,14 @@ class HomeScreen extends StatelessWidget {
                   'assets/images/premm.png',
                 ),
               ),
-              // Positioned(
-              //   bottom: SizeConfig.safeBlockVertical,
-              //   left: 240,
-              //   child: SvgPicture.asset(
-              //     'assets/images/premfit.svg',
-              //     height: SizeConfig.safeBlockVertical * 21,
-              //   ),
-              // ),
-              //PremAccButton
               Positioned(
-                top: 90,
-                left: 15,
+                top: 10.3.h,
+                left: 2.w,
                 child: SizedBox(
-                  height: SizeConfig.safeBlockVertical * 8,
-                  width: SizeConfig.safeBlockVertical * 30,
+                  height: 7.5.h,
+                  width: 60.w,
                   child: AnimatedButton(
-                    height: 48,
+                    height: 6.h,
                     shadowDegree: ShadowDegree.dark,
                     duration: 100,
                     color: Colors.white,
@@ -426,15 +409,15 @@ class HomeScreen extends StatelessWidget {
                     // ),
                     child: Text(
                       'Subscribe Now',
-                      style:
-                          TextStyle(color: Colors.grey.shade700, fontSize: 18),
+                      style: TextStyle(
+                          color: Colors.grey.shade700, fontSize: 16.sp),
                     ),
                   ),
                 ),
               ),
             ],
           ),
-          SizedBox(height: SizeConfig.safeBlockVertical),
+          SizedBox(height: 1.h),
           // Stack(
           //   children: [
           //     Positioned.fill(
@@ -454,7 +437,7 @@ class HomeScreen extends StatelessWidget {
           //     ),
           //   ],
           // ),
-          SizedBox(height: SizeConfig.safeBlockVertical * 3),
+          SizedBox(height: 2.h),
           // FutureBuilder<Map<String, List<ProgramModel>>>(
           //   future: getCategories(),
           //   builder: (_, snap) {
@@ -482,17 +465,17 @@ class HomeScreen extends StatelessWidget {
           // ),
 
           FullBody(),
-          SizedBox(height: SizeConfig.safeBlockVertical * 3.5),
+          SizedBox(height: 1.h),
           Calisth(),
-          SizedBox(height: SizeConfig.safeBlockVertical * 3.5),
+          SizedBox(height: 1.h),
           BodyBuildNew(),
-          SizedBox(height: SizeConfig.safeBlockVertical * 3.5),
+          SizedBox(height: 1.h),
           FuncTrain(),
-          SizedBox(height: SizeConfig.safeBlockVertical * 3.5),
+          SizedBox(height: 1.h),
           LoseWeight(),
-          SizedBox(height: SizeConfig.safeBlockVertical * 3.5),
+          SizedBox(height: 1.h),
           Articles(),
-          SizedBox(height: SizeConfig.safeBlockVertical * 3.5),
+          SizedBox(height: 1.h),
           Beaf(),
         ],
         // padding: EdgeInsets.symmetric(

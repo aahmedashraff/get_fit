@@ -42,6 +42,8 @@ class _NewSplashState extends State<NewSplash> {
 
   @override
   Widget build(BuildContext context) {
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Scaffold(
       body: Container(
         height: SizeConfig.screenHeight,
@@ -49,12 +51,13 @@ class _NewSplashState extends State<NewSplash> {
         child: Stack(
           children: [
             Center(
-              child: Image.asset(
-                'assets/images/get_fit.png',
-                // height: 324,
-                // width: 182,
-              ),
-            ),
+                child: isDark
+                    ? Image.asset(
+                        'assets/images/get_fit.png',
+                      )
+                    : Image.asset(
+                        'assets/images/splash_light.png',
+                      )),
           ],
         ),
       ),

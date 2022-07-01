@@ -63,7 +63,11 @@ class _CreateTextInputState extends State<CreateTextInput>
             width: 397,
             child: TextFormField(
               cursorColor: primaryColor,
-              style: TextStyle(color: Colors.black),
+              style: TextStyle(
+                color: isDark
+                    ? Colors.grey.shade400
+                    : Color.fromRGBO(24, 24, 24, 1),
+              ),
               decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
                   borderSide: const BorderSide(color: primaryColor, width: 2.0),
@@ -72,7 +76,8 @@ class _CreateTextInputState extends State<CreateTextInput>
                 errorText:
                     widget.isSubmitButtonClicked ? widget.snapShot.error : null,
                 filled: true,
-                fillColor: isDark ? Colors.white : Colors.grey.shade50,
+                fillColor:
+                    isDark ? Color.fromRGBO(24, 24, 24, 1) : Colors.white,
                 focusColor: primaryColor,
                 suffixIcon: widget.label == "Email"
                     ? Icon(
@@ -86,7 +91,7 @@ class _CreateTextInputState extends State<CreateTextInput>
                 ),
                 hintText: "Enter your " + widget.label,
                 hintStyle: GoogleFonts.poppins(
-                  textStyle: TextStyle(color: Colors.black26, fontSize: 14),
+                  textStyle: TextStyle(fontSize: 14),
                 ),
               ),
               keyboardType: widget.label == "Email"

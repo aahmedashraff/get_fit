@@ -64,6 +64,7 @@ dependencies:
   full_screen_image: any
   flutter_local_notifications: ^9.4.0
   flutter_svg: ^1.0.3
+  sizer: ^2.0.15
   numberpicker: ^2.1.1
   vertical_weight_slider: ^2.4.0
   flutter_switch: ^0.3.2

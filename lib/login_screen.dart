@@ -9,6 +9,7 @@ import 'package:CaptainSayedApp/widgets/next_or_submit_button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:sizer/sizer.dart';
 
 import 'main.dart';
 
@@ -28,146 +29,130 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final bloc = Provider.of<Bloc>(context);
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
 
-    return Scaffold(
-      body: SizedBox(
-        height: SizeConfig.screenHeight,
-        width: SizeConfig.screenWidth,
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: SizeConfig.safeBlockVertical * 1.5,
-              ),
-              Text(
-                "Login By Email",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-              ),
-              SizedBox(
-                height: SizeConfig.safeBlockVertical * 15,
-              ),
-
-              // Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: TextFormField(
-              //     style: TextStyle(color: Colors.black),
-              //     decoration: InputDecoration(
-              //         filled: true,
-              //         fillColor: Colors.white,
-              //         border: OutlineInputBorder(
-              //           borderRadius: BorderRadius.circular(13),
-              //         ),
-              //         suffixIcon: Icon(Icons.email_outlined),
-              //         hintText: 'enter your email '),
-              //     keyboardType: TextInputType.emailAddress,
-              //   ),
-              // ),
-
-              Row(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 8.0, bottom: 5),
-                    child: Text(
-                      'email',
-                      textAlign: TextAlign.start,
-                      style: GoogleFonts.poppins(
-                        textStyle: TextStyle(
-                            fontWeight: FontWeight.w600, fontSize: 16),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              StreamBuilder<String>(
-                stream: bloc.signInEmail,
-                builder: (_, snap) => CreateTextInput(
-                  label: "email",
-                  snapShot: snap,
-                  isSubmitButtonClicked: _isSubmitClicked,
-                  updateStreamFunction: bloc.updateSignInEmail,
+    return Sizer(
+      builder: (context, orientation, deviceType) {
+        return Scaffold(
+          body: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: 6.5.h),
+                Text(
+                  "Login By Email",
+                  style: TextStyle(fontSize: 20.sp),
                 ),
-              ),
-              SizedBox(
-                height: SizeConfig.safeBlockHorizontal * 10,
-              ),
-              Row(
-                children: const [
-                  Padding(
-                    padding: EdgeInsets.only(left: 8.0, bottom: 5),
-                    child: Text(
-                      'password',
-                      style:
-                          TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
-                    ),
-                  ),
-                ],
-              ),
-
-              // PASS_Text_input
-              StreamBuilder<String>(
-                stream: bloc.signInPass,
-                builder: (_, snap) => CreateTextInput(
-                  label: "password",
-                  showViewPasswordIcon: true,
-                  isPassword: true,
-                  snapShot: snap,
-                  isSubmitButtonClicked: _isSubmitClicked,
-                  updateStreamFunction: bloc.updateSignInPass,
+                SizedBox(
+                  height: 9.h,
                 ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context)
-                      .pushNamed(ResetPasswordScreen.screenName);
-                },
-                child: Row(
+
+                // Padding(
+                //   padding: const EdgeInsets.all(8.0),
+                //   child: TextFormField(
+                //     style: TextStyle(color: Colors.black),
+                //     decoration: InputDecoration(
+                //         filled: true,
+                //         fillColor: Colors.white,
+                //         border: OutlineInputBorder(
+                //           borderRadius: BorderRadius.circular(13),
+                //         ),
+                //         suffixIcon: Icon(Icons.email_outlined),
+                //         hintText: 'enter your email '),
+                //     keyboardType: TextInputType.emailAddress,
+                //   ),
+                // ),
+
+                Row(
                   children: [
-                    Text(
-                      'Forgot your password?',
-                      style:
-                          TextStyle(color: Colors.red.shade400, fontSize: 12),
+                    Padding(
+                      padding: EdgeInsets.only(left: 9, bottom: 4),
+                      child: Text(
+                        'Email',
+                        textAlign: TextAlign.start,
+                        style: GoogleFonts.poppins(
+                          textStyle: TextStyle(
+                              fontWeight: FontWeight.w600, fontSize: 13.sp),
+                        ),
+                      ),
                     ),
                   ],
                 ),
-              ),
-              StreamBuilder<Object>(
-                  stream: bloc.validateSubmitionForLogIn,
-                  builder: (context, snapshot) {
-                    return GestureDetector(
-                      onTap: _isLoading
-                          ? null
-                          : snapshot.hasData
-                              ? () => _submit(bloc)
-                              : () {
-                                  if (!_isSubmitClicked) {
-                                    setState(() {
-                                      _isSubmitClicked = true;
-                                    });
-                                  }
-                                },
-                      child: _isLoading
-                          ? CircularProgressIndicator()
-                          : NextOrSubmitButton("log in"),
-                    );
-                  }),
-              GestureDetector(
-                onTap: () => Navigator.of(context)
-                    .pushNamed(ResetPasswordScreen.screenName),
-                child: SizedBox(width: SizeConfig.safeBlockHorizontal * 4),
-                // Text(
-                //   "Forgot your password?",
-                //   style: TextStyle(
-                //     color: Colors.white,
-                //     fontSize: SizeConfig.safeBlockHorizontal * 4,
-                //   ),
-                // ),
-              ),
-            ],
+
+                StreamBuilder<String>(
+                  stream: bloc.signInEmail,
+                  builder: (_, snap) => CreateTextInput(
+                    label: "Email",
+                    isPassword: false,
+                    snapShot: snap,
+                    isSubmitButtonClicked: _isSubmitClicked,
+                    updateStreamFunction: bloc.updateSignInEmail,
+                  ),
+                ),
+                SizedBox(
+                  height: 2.5.h,
+                ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(left: 8.0, bottom: 5),
+                      child: Text(
+                        'Password',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600, fontSize: 13.sp),
+                      ),
+                    ),
+                  ],
+                ),
+
+                // PASS_Text_input
+                StreamBuilder<String>(
+                  stream: bloc.signInPass,
+                  builder: (_, snap) => CreateTextInput(
+                    label: "password",
+                    showViewPasswordIcon: true,
+                    isPassword: true,
+                    snapShot: snap,
+                    isSubmitButtonClicked: _isSubmitClicked,
+                    updateStreamFunction: bloc.updateSignInPass,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () => Navigator.of(context)
+                      .pushNamed(ResetPasswordScreen.screenName),
+                  child: Text(
+                    'Forgot your password?',
+                    style: TextStyle(
+                        color: Colors.red.shade400,
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                StreamBuilder<Object>(
+                    stream: bloc.validateSubmitionForLogIn,
+                    builder: (context, snapshot) {
+                      return GestureDetector(
+                        onTap: _isLoading
+                            ? null
+                            : snapshot.hasData
+                                ? () => _submit(bloc)
+                                : () {
+                                    if (!_isSubmitClicked) {
+                                      setState(() {
+                                        _isSubmitClicked = true;
+                                      });
+                                    }
+                                  },
+                        child: _isLoading
+                            ? CircularProgressIndicator()
+                            : NextOrSubmitButton("log in"),
+                      );
+                    }),
+              ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
